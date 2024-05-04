@@ -1,0 +1,2 @@
+# Pedagohiya
+Faculty Management System
