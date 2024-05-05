@@ -16,7 +16,7 @@ namespace Pedagohiya
     public partial class Students : UserControl
     {
         private string username;
-        string basePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\CSV Files\";
+        string basePath = @"CSV Files\";
         public Students(string username)
         {
             InitializeComponent();

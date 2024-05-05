@@ -10,7 +10,7 @@ namespace Pedagohiya
     public partial class Profile : UserControl
     {
         private WaveOut waveOut;
-        private string _userProfilesFolder = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\CSV Files";
+        private string _userProfilesFolder = @"CSV Files";
         public Profile()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace Pedagohiya
 
         private void ExistingProfilebtn_Click(object sender, EventArgs e)
         {
-            LoadClickSound(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click3.wav"); // Load the sound before playing
+            LoadClickSound(@"Assets\click3.wav"); // Load the sound before playing
             waveOut.Play();
             panelCreateProfile.Visible = false;
             panelExistingProfile.Visible = true;
@@ -47,7 +47,7 @@ namespace Pedagohiya
 
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
-            LoadClickSound(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\342200__christopherderp__videogame-menu-button-click.wav"); // Load the sound before playing
+            LoadClickSound(@"Assets\342200__christopherderp__videogame-menu-button-click.wav"); // Load the sound before playing
             waveOut.Play();
             panelCreateProfile.Visible = true;
             panelExistingProfile.Visible = false;
@@ -56,7 +56,7 @@ namespace Pedagohiya
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            LoadClickSound(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click4.mp3"); // Load the sound before playing
+            LoadClickSound(@"Assets\click4.mp3"); // Load the sound before playing
             waveOut.Play();
             var username = UsernameTextBox.Text;
 
@@ -68,7 +68,7 @@ namespace Pedagohiya
             }
 
             // Create user profile folder path
-            var userProfileFolder = Path.Combine(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\CSV Files\", username);
+            var userProfileFolder = Path.Combine(@"CSV Files\", username);
 
             UserProfileManager.SaveProfile(username);
 

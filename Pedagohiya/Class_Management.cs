@@ -14,7 +14,7 @@ namespace Pedagohiya
     public partial class Class_Management : UserControl
     {
         private string username;
-        string basePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\CSV Files\";
+        string basePath = @"CSV Files\";
         public Class_Management(string username)
         {
 

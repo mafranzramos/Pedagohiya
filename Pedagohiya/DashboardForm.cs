@@ -110,12 +110,12 @@ namespace Pedagohiya
         }
         private void Click1()
         {
-            LoadClickSound(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\342200__christopherderp__videogame-menu-button-click.wav"); // Load the sound before playing
+            LoadClickSound(@"Assets\342200__christopherderp__videogame-menu-button-click.wav"); // Load the sound before playing
             waveOut.Play();
         }
         private void Click2()
         {
-            LoadClickSound(@"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click3.wav"); // Load the sound before playing
+            LoadClickSound(@"Assets\click3.wav"); // Load the sound before playing
             waveOut.Play();
         }
     }

@@ -14,7 +14,7 @@ namespace Pedagohiya
     {
         // TESTING GIT AGAIN // TRY GIT TO VS
         private WaveOut waveOut;
-        private string basePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\CSV Files";
+        private string basePath = @"CSV Files\";
 
         public LoginForm()
         {
@@ -293,16 +293,16 @@ namespace Pedagohiya
             switch (x)
             {
                 case 1:
-                    filePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click3.wav";
+                    filePath = @"Assets\click3.wav";
                     break;
                 case 2:
-                    filePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\342200__christopherderp__videogame-menu-button-click.wav";
+                    filePath = @"Assets\342200__christopherderp__videogame-menu-button-click.wav";
                     break;
                 case 3:
-                    filePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click4.mp3";
+                    filePath = @"Assets\click4.mp3";
                     break;
                 default:
-                    filePath = @"D:\Users\22viv\source\repos\Pedagohiya\Pedagohiya\Assets\click3.wav";
+                    filePath = @"Assets\click3.wav";
                     break;
             }
             try
