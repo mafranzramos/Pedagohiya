@@ -1,8 +1,12 @@
 # auto-generated folders
 .vs
 Pedagohiya/bin/*
-Pedagohiya/obj/*
+Pedagohiya/bin/Debug/*
+Pedagohiya/bin/Debug/net8.0-windows8.0/*
+Pedagohiya/obj
 
 # folders to keep
-!Pedagohiya/bin/Debug/net8.0-windows8.0/Assets
-!Pedagohiya/bin/Debug/net8.0-windows8.0/CSV Files
+!Pedagohiya/bin/Debug/
+!Pedagohiya/bin/Debug/net8.0-windows8.0/
+!Pedagohiya/bin/Debug/net8.0-windows8.0/Assets/
+!Pedagohiya/bin/Debug/net8.0-windows8.0/CSV Files/
