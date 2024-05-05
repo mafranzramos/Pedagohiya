@@ -10,3 +10,5 @@ Pedagohiya/obj
 !Pedagohiya/bin/Debug/net8.0-windows8.0/
 !Pedagohiya/bin/Debug/net8.0-windows8.0/Assets/
 !Pedagohiya/bin/Debug/net8.0-windows8.0/CSV Files/
+/Pedagohiya/obj/project.nuget.cache
+/Pedagohiya/obj/Pedagohiya.csproj.nuget.dgspec.json
