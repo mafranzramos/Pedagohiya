@@ -1,4 +1,4 @@
-<p align="center"><img src="insert link here" width="270px" height="200px" alt="Jeep Logo"></p>
+<p align="center"><img src="insert link here" width="270px" height="200px" alt="PEDEGOHIYA LOGO"></p>
 
 <h1 align="center">Pedagohiya: Faculty Management System</h1>
 
@@ -54,6 +54,6 @@ Ensure you have **.NET Framework** installed on your machine.
 * [Ma'am Fatima](https://github.com/marieemoiselle) - AOOP Prof
 
 ---
-<p align="center"><img src="insert link here" width="320px" height="200px" alt="Jeep Logo"></p>
+<p align="center"><img src="insert link here" width="320px" height="200px" alt="Pedagohiya Logo"></p>
 
 ---
