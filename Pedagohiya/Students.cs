@@ -30,7 +30,7 @@ namespace Pedagohiya
         private void Students_Load(object sender, EventArgs e)
         {
             SubjectList.Items.Add("PICK A SCHOOL YEAR AND SEMESTER FIRST");
-            comboBoxSection.Items.Add("Select subject first bruv");
+            comboBoxSection.Items.Add("CLICK ON A SUBJECT TO SHOW THE AVAILABLE SECTIONS");
             PopulateYearRangeComboBox();
         }
         private void Refresh()
@@ -113,7 +113,6 @@ namespace Pedagohiya
             string selectedSemester = SemesterComboBox.SelectedItem.ToString();
             string dataPath = Path.Combine(basePath, username, selectedYear, selectedSemester);
 
-            // Check if the directory exists before accessing it
             if (Directory.Exists(dataPath))
             {
                 string[] subdirectories = Directory.GetDirectories(dataPath);
@@ -164,15 +163,25 @@ namespace Pedagohiya
         {
             labelNewName.Visible = false;
             labelSubjectName.Visible = true;
+
+
+            string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
+            string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
             string folderName = textBoxSubject.Text;
-            string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
-            string selectedSemester = SemesterComboBox.SelectedItem.ToString();
+
+            if (string.IsNullOrEmpty(selectedYear) || string.IsNullOrEmpty(selectedSemester))
+            {
+
+                MessageBox.Show("Please pick a year and semester first from the dropdown boxes at the top.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             if (string.IsNullOrEmpty(folderName))
             {
                 MessageBox.Show("Please enter a folder name.");
                 return;
             }
+
             string folderPath = Path.Combine(basePath, username, selectedYear, selectedSemester, folderName);
             if (Directory.Exists(folderPath))
             {
@@ -195,28 +204,30 @@ namespace Pedagohiya
             }
 
         }
-        private void btnEditSubject_Click(object sender, EventArgs e)
-        {
-
-            btnEditSubject.Text = "FINALIZE NAME?";
-            labelNewName.Visible = true;
-            labelSubjectName.Visible = false;
-        }
 
         private void btnDeleteSubject_Click(object sender, EventArgs e)
         {
             labelNewName.Visible = false;
             labelSubjectName.Visible = true;
+
             string subjectName = textBoxSubject.Text;
-            if (string.IsNullOrEmpty(subjectName))
+            string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
+            string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedYear) || string.IsNullOrEmpty(selectedSemester))
             {
-                MessageBox.Show("Please select a subject to delete.");
+
+                MessageBox.Show("Please pick a year and semester first from the dropdown boxes at the top.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
-            string selectedSemester = SemesterComboBox.SelectedItem.ToString();
 
-            string folderPath = Path.Combine(basePath, username, selectedYear, selectedSemester,  subjectName);
+            if (string.IsNullOrEmpty(subjectName))
+            {
+                MessageBox.Show("Please Enter the Subject you want to delete.");
+                return;
+            }
+
+            string folderPath = Path.Combine(basePath, username, selectedYear, selectedSemester, subjectName);
             if (Directory.Exists(folderPath))
             {
                 DialogResult result = MessageBox.Show(
@@ -233,7 +244,6 @@ namespace Pedagohiya
                 MessageBox.Show("The subject '" + subjectName + "' does not exist.");
                 textBoxSubject.Text = "";
             }
-
             textBoxSubject.Text = "";
             Refresh();
         }
@@ -241,14 +251,21 @@ namespace Pedagohiya
         // === SECTION ACTIONS === 
         private void btnAddSection_Click(object sender, EventArgs e)
         {
+            string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
+            string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedYear) || string.IsNullOrEmpty(selectedSemester))
+            {
+
+                MessageBox.Show("Please pick a year and semester first from the dropdown boxes at the top.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             if (SubjectListSection.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a subject from the SubjectList before adding a section.");
                 return;
             }
 
-            string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
-            string selectedSemester = SemesterComboBox.SelectedItem.ToString();
             string selectedSubject = SubjectListSection.SelectedItem.ToString().Split('.')[1].Trim();
             string subjectPath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject);
 
@@ -271,7 +288,7 @@ namespace Pedagohiya
             {
                 Directory.CreateDirectory(sectionPath);
                 string csvClassList = Path.Combine(sectionPath, sectionName + "_classList.csv");
-                using (FileStream fs = File.Create(csvClassList)){}
+                using (FileStream fs = File.Create(csvClassList)) { }
                 string csvAttendanceList = Path.Combine(sectionPath, sectionName + "_attendanceList.csv");
                 using (FileStream fs = File.Create(csvAttendanceList)) { }
                 string csvTaskList = Path.Combine(sectionPath, sectionName + "_taskList.csv");
@@ -298,8 +315,7 @@ namespace Pedagohiya
             string selectedSubject = SubjectListSection.SelectedItem.ToString().Split('.')[1].Trim();
             string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
             string selectedSemester = SemesterComboBox.SelectedItem.ToString();
-            string subjectPath = Path.Combine(basePath, username, selectedYear,selectedSemester, selectedSubject);
-
+            string subjectPath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject);
 
             string sectionName = textBoxSection.Text.Trim();
 
@@ -379,12 +395,14 @@ namespace Pedagohiya
             }
 
             string inputText = textBoxInput.Text;
-            string[] parts = inputText.Split(new[] { ',' }, 2);
-            if (parts.Length == 2)
+            string[] parts = inputText.Split(new[] { ',' }, 4);
+            if (parts.Length == 4)
             {
                 string srCode = parts[0].Trim();
-                string name = parts[1].Trim();
-                string csvLine = $"{srCode},{name}";
+                string lastName = parts[1].Trim();
+                string firstName = parts[2].Trim();
+                string middleName = parts[3].Trim();
+                string csvLine = $"{srCode},{lastName},{firstName},{middleName}";
 
                 string selectedSubject = comboBoxSubject.SelectedItem.ToString();
                 string selectedSection = comboBoxSection.SelectedItem.ToString();
@@ -393,12 +411,20 @@ namespace Pedagohiya
 
                 string csvFilePath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_classList.csv");
 
-                File.AppendAllLines(csvFilePath, new string[] { csvLine });
-                RefreshCheckboxList();
+                try
+                {
+                    File.AppendAllLines(csvFilePath, new string[] { csvLine });
+                    RefreshCheckboxList();
+                    MessageBox.Show("Data pushed successfully.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while writing to the file: {ex.Message}");
+                }
             }
             else
             {
-                MessageBox.Show("Invalid input format. Please enter data in the correct format (SR code, name).");
+                MessageBox.Show("Invalid input format. Please enter data in the correct format (SRCODE, LASTNAME, FIRST NAME, MIDDLE NAME).");
             }
         }
 
@@ -496,9 +522,9 @@ namespace Pedagohiya
             {
                 Refresh();
             }
-            btnAddSubject.Enabled = isSelected;
-            btnDeleteSubject.Enabled = isSelected;
-            btnAddSection.Enabled = isSelected;
+            /* btnAddSubject.Enabled = isSelected;
+             btnDeleteSubject.Enabled = isSelected;
+             btnAddSection.Enabled = isSelected;*/
             btnDeleteSection.Enabled = isSelected;
             btnPush.Enabled = isSelected;
             btnPull.Enabled = isSelected;
@@ -511,6 +537,128 @@ namespace Pedagohiya
         private void SchoolYearComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             EnableButtonsIfSelected();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private Dictionary<string, List<string>> studentDetailsDict = new Dictionary<string, List<string>>();
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            listBoxResult.Visible = true;
+            string searchText = textBoxSearch.Text.Trim();
+            string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
+            string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selectedYear) || string.IsNullOrEmpty(selectedSemester))
+            {
+                MessageBox.Show("Please pick a year and semester first from the dropdown boxes at the top.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (searchText.Length >= 1)
+            {
+                string dataPath = Path.Combine(basePath, username, selectedYear, selectedSemester);
+
+                studentDetailsDict.Clear(); // Clear previous search results
+                listBoxResult.Items.Clear(); // Clear previous search results in ListBox
+
+                foreach (string subjectFolder in Directory.EnumerateDirectories(dataPath))
+                {
+                    foreach (string sectionFolder in Directory.EnumerateDirectories(subjectFolder))
+                    {
+                        string sectionName = Path.GetFileName(sectionFolder);
+                        string classListFile = Path.Combine(sectionFolder, $"{sectionName}_classList.csv");
+
+                        if (File.Exists(classListFile))
+                        {
+                            try
+                            {
+                                string[] lines = File.ReadAllLines(classListFile);
+                                foreach (string line in lines)
+                                {
+                                    if (line.Contains(searchText))
+                                    {
+                                        string[] studentInfo = line.Split(',');
+                                        string studentSRCode = studentInfo[0].Trim(); // Assuming SR code is the first element
+                                        string lastName = studentInfo[1].Trim(); // Assuming last name is the second element
+                                        string firstName = studentInfo[2].Trim(); // Assuming first name is the third element
+                                        string middleName = studentInfo[3].Trim(); // Assuming middle name is the fourth element
+                                        string middleInitial = string.IsNullOrEmpty(middleName) ? "" : $"{middleName[0]}.";
+                                        string fullName = $"{firstName} {middleName} {lastName}"; // Full name with middle initial
+
+                                        string subjectName = Path.GetFileName(Path.GetDirectoryName(sectionFolder)); // Get subject name from parent folder
+
+                                        // Unique key for each student
+                                        string studentKey = $"{fullName},{studentSRCode}";
+
+                                        // Store detailed information
+                                        string sectionAndSubject = $"{sectionName} ({subjectName})";
+
+                                        if (!studentDetailsDict.ContainsKey(studentKey))
+                                        {
+                                            studentDetailsDict[studentKey] = new List<string>();
+                                        }
+
+                                        studentDetailsDict[studentKey].Add(sectionAndSubject);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Error reading file '{classListFile}': {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Section folder '{sectionFolder}' does not have a class list file.");
+                        }
+                    }
+                }
+
+                foreach (var student in studentDetailsDict)
+                {
+                    string[] studentKeyParts = student.Key.Split(',');
+                    string fullName = studentKeyParts[0];
+                    string studentSRCode = studentKeyParts[1];
+
+                    // Add name and SR code to listBoxResult
+                    string displayInfo = $"{fullName} ({studentSRCode})";
+                    listBoxResult.Items.Add(displayInfo);
+                }
+            }
+        }
+
+        private void listBoxResult_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxResult.SelectedIndex != -1)
+            {
+                int selectedIndex = listBoxResult.SelectedIndex;
+                string selectedDetail = listBoxResult.Items[selectedIndex] as string;
+                int srCodeStart = selectedDetail.LastIndexOf('(') + 1;
+                int srCodeLength = selectedDetail.LastIndexOf(')') - srCodeStart;
+                string studentSRCode = selectedDetail.Substring(srCodeStart, srCodeLength).Trim();
+                string fullName = selectedDetail.Substring(0, srCodeStart - 2).Trim();
+
+                string studentKey = $"{fullName},{studentSRCode}";
+
+                if (studentDetailsDict.TryGetValue(studentKey, out List<string> sectionsAndSubjects))
+                {
+                    string aggregatedSectionsAndSubjects = string.Join("\n", sectionsAndSubjects);
+
+                    // Update label text with retrieved information
+                    Label_Name.Text = "Name: " + fullName;
+                    Label_SRCode.Text = "SR-Code: " + studentSRCode;
+                    Label_Section.Text = aggregatedSectionsAndSubjects;
+                }
+            }
+        }
+        private void textBoxInput_Click(object sender, EventArgs e)
+        {
+            textBoxInput.Text = "";
         }
     }
 }

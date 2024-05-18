@@ -30,6 +30,7 @@ namespace Pedagohiya
             lblUsername.Text = "Hello, " + username + "!";
             waveOut = new WaveOut();
             DockFull();
+
         }
         public void DockFull()
         {

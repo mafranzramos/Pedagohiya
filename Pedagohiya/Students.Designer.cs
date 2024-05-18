@@ -44,7 +44,6 @@
             labelNewName = new Label();
             btnDeleteSubject = new Button();
             btnAddSubject = new Button();
-            btnEditSubject = new Button();
             textBoxSubject = new TextBox();
             label2 = new Label();
             tabPage5 = new TabPage();
@@ -61,6 +60,15 @@
             comboBoxSection = new ComboBox();
             btnDeleteTextTextBox = new Button();
             tabPage1 = new TabPage();
+            StudentInfo_Panel = new Panel();
+            panel1 = new Panel();
+            Label_Name = new Label();
+            Label_SRCode = new Label();
+            Label_Section = new Label();
+            Label_Subject = new Label();
+            label6 = new Label();
+            listBoxResult = new ListBox();
+            textBoxSearch = new TextBox();
             SemesterComboBox = new ComboBox();
             SchoolYearComboBox = new ComboBox();
             tableLayoutPanel2.SuspendLayout();
@@ -69,6 +77,9 @@
             tabPage6.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage1.SuspendLayout();
+            StudentInfo_Panel.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // SubjectList
@@ -135,6 +146,7 @@
             textBoxInput.Size = new Size(543, 436);
             textBoxInput.TabIndex = 22;
             textBoxInput.Text = "Type here to add students";
+            textBoxInput.Click += textBoxInput_Click;
             // 
             // checkBoxStudent
             // 
@@ -232,7 +244,6 @@
             tabPage6.Controls.Add(labelNewName);
             tabPage6.Controls.Add(btnDeleteSubject);
             tabPage6.Controls.Add(btnAddSubject);
-            tabPage6.Controls.Add(btnEditSubject);
             tabPage6.Controls.Add(textBoxSubject);
             tabPage6.Controls.Add(SubjectList);
             tabPage6.Controls.Add(label2);
@@ -270,7 +281,6 @@
             // 
             btnDeleteSubject.BackColor = Color.White;
             btnDeleteSubject.BackgroundImageLayout = ImageLayout.None;
-            btnDeleteSubject.Enabled = false;
             btnDeleteSubject.FlatAppearance.BorderColor = Color.Black;
             btnDeleteSubject.FlatAppearance.BorderSize = 3;
             btnDeleteSubject.FlatStyle = FlatStyle.Flat;
@@ -292,7 +302,6 @@
             // 
             btnAddSubject.BackColor = Color.White;
             btnAddSubject.BackgroundImageLayout = ImageLayout.None;
-            btnAddSubject.Enabled = false;
             btnAddSubject.FlatAppearance.BorderColor = Color.Black;
             btnAddSubject.FlatAppearance.BorderSize = 3;
             btnAddSubject.FlatStyle = FlatStyle.Flat;
@@ -309,28 +318,6 @@
             btnAddSubject.TextAlign = ContentAlignment.MiddleLeft;
             btnAddSubject.UseVisualStyleBackColor = false;
             btnAddSubject.Click += btnAddSubject_Click;
-            // 
-            // btnEditSubject
-            // 
-            btnEditSubject.BackColor = Color.White;
-            btnEditSubject.BackgroundImageLayout = ImageLayout.None;
-            btnEditSubject.Enabled = false;
-            btnEditSubject.FlatAppearance.BorderColor = Color.Black;
-            btnEditSubject.FlatAppearance.BorderSize = 3;
-            btnEditSubject.FlatStyle = FlatStyle.Flat;
-            btnEditSubject.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEditSubject.Image = Properties.Resources.edit;
-            btnEditSubject.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEditSubject.Location = new Point(156, 443);
-            btnEditSubject.Margin = new Padding(10);
-            btnEditSubject.Name = "btnEditSubject";
-            btnEditSubject.Padding = new Padding(16);
-            btnEditSubject.Size = new Size(299, 83);
-            btnEditSubject.TabIndex = 13;
-            btnEditSubject.Text = "        Edit Section Name";
-            btnEditSubject.TextAlign = ContentAlignment.MiddleLeft;
-            btnEditSubject.UseVisualStyleBackColor = false;
-            btnEditSubject.Click += btnEditSubject_Click;
             // 
             // textBoxSubject
             // 
@@ -408,7 +395,6 @@
             // 
             btnDeleteSection.BackColor = Color.White;
             btnDeleteSection.BackgroundImageLayout = ImageLayout.None;
-            btnDeleteSection.Enabled = false;
             btnDeleteSection.FlatAppearance.BorderColor = Color.Black;
             btnDeleteSection.FlatAppearance.BorderSize = 3;
             btnDeleteSection.FlatStyle = FlatStyle.Flat;
@@ -430,7 +416,6 @@
             // 
             btnAddSection.BackColor = Color.White;
             btnAddSection.BackgroundImageLayout = ImageLayout.None;
-            btnAddSection.Enabled = false;
             btnAddSection.FlatAppearance.BorderColor = Color.Black;
             btnAddSection.FlatAppearance.BorderSize = 3;
             btnAddSection.FlatStyle = FlatStyle.Flat;
@@ -553,12 +538,111 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(StudentInfo_Panel);
+            tabPage1.Controls.Add(listBoxResult);
+            tabPage1.Controls.Add(textBoxSearch);
             tabPage1.Location = new Point(4, 54);
             tabPage1.Name = "tabPage1";
             tabPage1.Size = new Size(1221, 660);
             tabPage1.TabIndex = 3;
             tabPage1.Text = "Search Student";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // StudentInfo_Panel
+            // 
+            StudentInfo_Panel.Controls.Add(panel1);
+            StudentInfo_Panel.Controls.Add(Label_Section);
+            StudentInfo_Panel.Controls.Add(Label_Subject);
+            StudentInfo_Panel.Controls.Add(label6);
+            StudentInfo_Panel.Location = new Point(566, 22);
+            StudentInfo_Panel.Name = "StudentInfo_Panel";
+            StudentInfo_Panel.Size = new Size(624, 606);
+            StudentInfo_Panel.TabIndex = 22;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(Label_Name);
+            panel1.Controls.Add(Label_SRCode);
+            panel1.Location = new Point(25, 88);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(575, 129);
+            panel1.TabIndex = 26;
+            // 
+            // Label_Name
+            // 
+            Label_Name.AutoSize = true;
+            Label_Name.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_Name.ForeColor = Color.Black;
+            Label_Name.Location = new Point(19, 60);
+            Label_Name.Name = "Label_Name";
+            Label_Name.Size = new Size(100, 37);
+            Label_Name.TabIndex = 22;
+            Label_Name.Text = "Name:";
+            // 
+            // Label_SRCode
+            // 
+            Label_SRCode.AutoSize = true;
+            Label_SRCode.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_SRCode.ForeColor = Color.Black;
+            Label_SRCode.Location = new Point(19, 12);
+            Label_SRCode.Name = "Label_SRCode";
+            Label_SRCode.Size = new Size(134, 37);
+            Label_SRCode.TabIndex = 23;
+            Label_SRCode.Text = "SR-Code:";
+            // 
+            // Label_Section
+            // 
+            Label_Section.AutoSize = true;
+            Label_Section.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_Section.ForeColor = Color.Black;
+            Label_Section.Location = new Point(44, 321);
+            Label_Section.Name = "Label_Section";
+            Label_Section.Size = new Size(0, 37);
+            Label_Section.TabIndex = 25;
+            // 
+            // Label_Subject
+            // 
+            Label_Subject.AutoSize = true;
+            Label_Subject.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_Subject.ForeColor = Color.Black;
+            Label_Subject.Location = new Point(153, 265);
+            Label_Subject.Name = "Label_Subject";
+            Label_Subject.Size = new Size(321, 37);
+            Label_Subject.TabIndex = 24;
+            Label_Subject.Text = "SUBJECT AND SECTION:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Black", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Black;
+            label6.Location = new Point(80, 26);
+            label6.Name = "label6";
+            label6.Size = new Size(482, 50);
+            label6.TabIndex = 21;
+            label6.Text = "STUDENT INFORMATION";
+            // 
+            // listBoxResult
+            // 
+            listBoxResult.BorderStyle = BorderStyle.FixedSingle;
+            listBoxResult.FormattingEnabled = true;
+            listBoxResult.ItemHeight = 32;
+            listBoxResult.Location = new Point(17, 53);
+            listBoxResult.Name = "listBoxResult";
+            listBoxResult.Size = new Size(519, 578);
+            listBoxResult.TabIndex = 5;
+            listBoxResult.SelectedIndexChanged += listBoxResult_SelectedIndexChanged;
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.BorderStyle = BorderStyle.FixedSingle;
+            textBoxSearch.Location = new Point(17, 14);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.PlaceholderText = "Search for Student";
+            textBoxSearch.Size = new Size(519, 39);
+            textBoxSearch.TabIndex = 4;
+            textBoxSearch.TextChanged += textBoxSearch_TextChanged;
             // 
             // SemesterComboBox
             // 
@@ -608,6 +692,12 @@
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();
             tabPage4.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            StudentInfo_Panel.ResumeLayout(false);
+            StudentInfo_Panel.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -642,11 +732,19 @@
         private Label labelNewName;
         private Button btnDeleteSubject;
         private Button btnAddSubject;
-        private Button btnEditSubject;
         private TextBox textBoxSubject;
         private Label label2;
         private ListBox SubjectList;
         private ComboBox SemesterComboBox;
         private ComboBox SchoolYearComboBox;
+        private TextBox textBoxSearch;
+        private ListBox listBoxResult;
+        private Label label6;
+        private Panel StudentInfo_Panel;
+        private Label Label_Section;
+        private Label Label_Subject;
+        private Label Label_SRCode;
+        private Label Label_Name;
+        private Panel panel1;
     }
 }
