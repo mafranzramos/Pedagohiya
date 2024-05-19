@@ -13,7 +13,7 @@ using Microsoft.VisualBasic.FileIO;
 using NAudio.Wave;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace Pedagohiya
-{
+{//
     public partial class DashboardForm : Form
     {
         private WaveOut waveOut;
