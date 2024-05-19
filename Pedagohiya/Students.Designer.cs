@@ -138,15 +138,16 @@
             // 
             // textBoxInput
             // 
+            textBoxInput.BorderStyle = BorderStyle.FixedSingle;
             textBoxInput.Dock = DockStyle.Fill;
             textBoxInput.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBoxInput.Location = new Point(3, 64);
             textBoxInput.Multiline = true;
             textBoxInput.Name = "textBoxInput";
+            textBoxInput.PlaceholderText = "SRCode, Last Name, First Name, Middle Name";
+            textBoxInput.ScrollBars = ScrollBars.Both;
             textBoxInput.Size = new Size(543, 436);
             textBoxInput.TabIndex = 22;
-            textBoxInput.Text = "Type here to add students";
-            textBoxInput.Click += textBoxInput_Click;
             // 
             // checkBoxStudent
             // 
@@ -181,7 +182,6 @@
             btnPush.BackColor = Color.Transparent;
             btnPush.BackgroundImageLayout = ImageLayout.None;
             btnPush.Dock = DockStyle.Fill;
-            btnPush.Enabled = false;
             btnPush.FlatAppearance.BorderColor = Color.Black;
             btnPush.FlatAppearance.BorderSize = 0;
             btnPush.FlatStyle = FlatStyle.Flat;
@@ -201,7 +201,6 @@
             btnPull.BackColor = Color.Transparent;
             btnPull.BackgroundImageLayout = ImageLayout.None;
             btnPull.Dock = DockStyle.Fill;
-            btnPull.Enabled = false;
             btnPull.FlatAppearance.BorderColor = Color.Black;
             btnPull.FlatAppearance.BorderSize = 0;
             btnPull.FlatStyle = FlatStyle.Flat;
@@ -573,22 +572,22 @@
             // Label_Name
             // 
             Label_Name.AutoSize = true;
-            Label_Name.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_Name.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Label_Name.ForeColor = Color.Black;
-            Label_Name.Location = new Point(19, 60);
+            Label_Name.Location = new Point(19, 69);
             Label_Name.Name = "Label_Name";
-            Label_Name.Size = new Size(100, 37);
+            Label_Name.Size = new Size(69, 25);
             Label_Name.TabIndex = 22;
             Label_Name.Text = "Name:";
             // 
             // Label_SRCode
             // 
             Label_SRCode.AutoSize = true;
-            Label_SRCode.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Label_SRCode.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Label_SRCode.ForeColor = Color.Black;
-            Label_SRCode.Location = new Point(19, 12);
+            Label_SRCode.Location = new Point(19, 22);
             Label_SRCode.Name = "Label_SRCode";
-            Label_SRCode.Size = new Size(134, 37);
+            Label_SRCode.Size = new Size(94, 25);
             Label_SRCode.TabIndex = 23;
             Label_SRCode.Text = "SR-Code:";
             // 
@@ -607,7 +606,7 @@
             Label_Subject.AutoSize = true;
             Label_Subject.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Label_Subject.ForeColor = Color.Black;
-            Label_Subject.Location = new Point(153, 265);
+            Label_Subject.Location = new Point(161, 263);
             Label_Subject.Name = "Label_Subject";
             Label_Subject.Size = new Size(321, 37);
             Label_Subject.TabIndex = 24;
@@ -627,11 +626,12 @@
             // listBoxResult
             // 
             listBoxResult.BorderStyle = BorderStyle.FixedSingle;
+            listBoxResult.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             listBoxResult.FormattingEnabled = true;
-            listBoxResult.ItemHeight = 32;
+            listBoxResult.ItemHeight = 30;
             listBoxResult.Location = new Point(17, 53);
             listBoxResult.Name = "listBoxResult";
-            listBoxResult.Size = new Size(519, 578);
+            listBoxResult.Size = new Size(519, 542);
             listBoxResult.TabIndex = 5;
             listBoxResult.SelectedIndexChanged += listBoxResult_SelectedIndexChanged;
             // 

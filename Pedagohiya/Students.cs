@@ -47,7 +47,7 @@ namespace Pedagohiya
         {
             int currentYear = DateTime.Now.Year;
             int startYear = currentYear - 1;
-            int endYear = DateTime.Now.Year + 1; // Get current year and add 1 for next year
+            int endYear = DateTime.Now.Year + 1; 
 
             for (int year = startYear; year <= endYear; year++)
             {
@@ -91,15 +91,16 @@ namespace Pedagohiya
             if (!File.Exists(csvFilePath))
             {
                 checkBoxStudent.Items.Clear();
-                MessageBox.Show("CSV file not found: " + csvFilePath, "Debug Info"); // Debug message
+                MessageBox.Show("CSV file not found: " + csvFilePath, "Debug Info"); 
                 return;
             }
             try
             {
                 string[] lines = File.ReadAllLines(csvFilePath);
-                foreach (string line in lines)
+
+                for (int i = 1; i < lines.Length; i++)
                 {
-                    checkBoxStudent.Items.Add(line);
+                    checkBoxStudent.Items.Add(lines[i]);
                 }
             }
             catch (IOException ex)
@@ -290,12 +291,20 @@ namespace Pedagohiya
             {
                 Directory.CreateDirectory(sectionPath);
                 string csvClassList = Path.Combine(sectionPath, sectionName + "_classList.csv");
+                
                 using (FileStream fs = File.Create(csvClassList)) { }
+                using (StreamWriter write = File.AppendText(csvClassList))
+                {
+                    write.WriteLine("SRCODE, LASTNAME, FIRST NAME, MIDDLE NAME");
+                }
                 string csvAttendanceList = Path.Combine(sectionPath, sectionName + "_attendanceList.csv");
                 using (FileStream fs = File.Create(csvAttendanceList)) { }
                 string csvTaskList = Path.Combine(sectionPath, sectionName + "_taskList.csv");
                 using (FileStream fs = File.Create(csvTaskList)) { }
-
+                using (StreamWriter write = File.AppendText(csvTaskList))
+                {
+                    write.WriteLine("SRCODE");
+                }
                 MessageBox.Show("Section '" + sectionName + "' added successfully!");
                 textBoxSection.Text = "";
                 RefreshSubjectList(SubjectList);
@@ -392,41 +401,71 @@ namespace Pedagohiya
         {
             if (comboBoxSubject.SelectedIndex == -1 || comboBoxSection.SelectedIndex == -1 || SchoolYearComboBox.SelectedIndex == -1 || SemesterComboBox.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a subject, section, year, and semester before pushing data.");
+                MessageBox.Show("Please select a year, semester, subject, and section on the dropboxes above before pushing data.");
                 return;
             }
 
             string inputText = textBoxInput.Text;
-            string[] parts = inputText.Split(new[] { ',' }, 4);
-            if (parts.Length == 4)
+            string[] lines = inputText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            string selectedSubject = comboBoxSubject.SelectedItem.ToString();
+            string selectedSection = comboBoxSection.SelectedItem.ToString();
+            string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
+            string selectedSemester = SemesterComboBox.SelectedItem.ToString();
+
+            string csvFilePath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_classList.csv");
+            string taskListPath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_taskList.csv");
+
+            List<string> existingSR = new List<string>();
+
+            try
             {
-                string srCode = parts[0].Trim();
-                string lastName = parts[1].Trim();
-                string firstName = parts[2].Trim();
-                string middleName = parts[3].Trim();
-                string csvLine = $"{srCode},{lastName},{firstName},{middleName}";
-
-                string selectedSubject = comboBoxSubject.SelectedItem.ToString();
-                string selectedSection = comboBoxSection.SelectedItem.ToString();
-                string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
-                string selectedSemester = SemesterComboBox.SelectedItem.ToString();
-
-                string csvFilePath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_classList.csv");
-
-                try
+                if (File.Exists(csvFilePath))
                 {
-                    File.AppendAllLines(csvFilePath, new string[] { csvLine });
-                    RefreshCheckboxList();
-                    MessageBox.Show("Data pushed successfully.");
+                    string[] existingLines = File.ReadAllLines(csvFilePath);
+                    foreach (string existingLine in existingLines)
+                    {
+                        string[] parts = existingLine.Split(',');
+                        if (parts.Length >= 1)
+                        {
+                            existingSR.Add(parts[0].Trim());
+                        }
+                    }
                 }
-                catch (Exception ex)
+
+                foreach (string line in lines)
                 {
-                    MessageBox.Show($"An error occurred while writing to the file: {ex.Message}");
+                    string[] parts = line.Split(new[] { ',' }, 4);
+                    if (parts.Length == 4)
+                    {
+                        string srCode = parts[0].Trim();
+
+                        if (!existingSR.Contains(srCode))
+                        {
+                            string lastName = parts[1].Trim();
+                            string firstName = parts[2].Trim();
+                            string middleName = parts[3].Trim();
+                            string csvLine = $"{srCode},{lastName},{firstName},{middleName}";
+
+                            File.AppendAllLines(csvFilePath, new string[] { csvLine });
+                            existingSR.Add(srCode);
+                            RefreshCheckboxList();
+                            File.AppendAllLines(taskListPath, new string[] { srCode });
+                        }
+                        else
+                        {
+                            MessageBox.Show($"SR code '{srCode}' already exists in the list. DOUBLE CHECK.");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid input format. Please enter data in the correct format (SRCODE, LASTNAME, FIRST NAME, MIDDLE NAME).");
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid input format. Please enter data in the correct format (SRCODE, LASTNAME, FIRST NAME, MIDDLE NAME).");
+                MessageBox.Show($"An error occurred while writing to the file: {ex.Message}");
             }
         }
 
@@ -438,40 +477,55 @@ namespace Pedagohiya
 
         private void btnPull_Click(object sender, EventArgs e)
         {
-
             var selectedItems = checkBoxStudent.CheckedItems.Cast<string>().ToList();
 
             if (selectedItems.Count > 0)
             {
-                List<string> allEntries = new List<string>();
                 string selectedSubject = comboBoxSubject.SelectedItem.ToString();
                 string selectedSection = comboBoxSection.SelectedItem.ToString();
                 string selectedYear = SchoolYearComboBox.SelectedItem.ToString();
                 string selectedSemester = SemesterComboBox.SelectedItem.ToString();
 
                 string csvFilePath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_classList.csv");
-                using (StreamReader reader = new StreamReader(csvFilePath))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        if (!selectedItems.Contains(line))
-                        {
-                            allEntries.Add(line);
-                        }
-                    }
-                }
-                string selectedText = string.Join("\n", selectedItems.Select(item => item.Replace("\\", "")));
+                string taskListFilePath = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, selectedSection, selectedSection + "_taskList.csv");
 
-                string currentText = textBoxInput.Text;
-
-                string newText = string.IsNullOrEmpty(currentText) ? selectedText : $"{currentText}\n{selectedText}";
-
-                textBoxInput.Text = newText;
+                List<string> allEntries = new List<string>();
+                List<string> allTaskEntries = new List<string>();
 
                 try
                 {
+                    using (StreamReader reader = new StreamReader(csvFilePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (!selectedItems.Contains(line))
+                            {
+                                allEntries.Add(line);
+                            }
+                        }
+                    }
+
+                    using (StreamReader reader = new StreamReader(taskListFilePath))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string srCode = line.Split(',')[0]; 
+                            if (!selectedItems.Any(item => item.StartsWith(srCode)))
+                            {
+                                allTaskEntries.Add(line);
+                            }
+                        }
+                    }
+
+                    string selectedText = string.Join("\n", selectedItems.Select(item => item.Replace("\\", "")));
+                    string currentText = textBoxInput.Text;
+                    string newText = string.IsNullOrEmpty(currentText) ? selectedText : $"{currentText}\n{selectedText}";
+                    textBoxInput.Text = newText;
+
                     File.WriteAllLines(csvFilePath, allEntries.ToArray());
+                    File.WriteAllLines(taskListFilePath, allTaskEntries.ToArray());
                 }
                 catch (Exception ex)
                 {
@@ -524,12 +578,6 @@ namespace Pedagohiya
             {
                 Refresh();
             }
-            /* btnAddSubject.Enabled = isSelected;
-             btnDeleteSubject.Enabled = isSelected;
-             btnAddSection.Enabled = isSelected;*/
-            btnDeleteSection.Enabled = isSelected;
-            btnPush.Enabled = isSelected;
-            btnPull.Enabled = isSelected;
         }
 
         private void SemesterComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -541,10 +589,6 @@ namespace Pedagohiya
             EnableButtonsIfSelected();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private Dictionary<string, List<string>> studentDetailsDict = new Dictionary<string, List<string>>();
 
@@ -565,8 +609,8 @@ namespace Pedagohiya
             {
                 string dataPath = Path.Combine(basePath, username, selectedYear, selectedSemester);
 
-                studentDetailsDict.Clear(); // Clear previous search results
-                listBoxResult.Items.Clear(); // Clear previous search results in ListBox
+                studentDetailsDict.Clear();
+                listBoxResult.Items.Clear(); 
 
                 foreach (string subjectFolder in Directory.EnumerateDirectories(dataPath))
                 {
@@ -582,7 +626,8 @@ namespace Pedagohiya
                                 string[] lines = File.ReadAllLines(classListFile);
                                 foreach (string line in lines)
                                 {
-                                    if (line.Contains(searchText))
+                                    string searchTextLower = searchText.ToLower();
+                                    if (line.ToLower().Contains(searchTextLower))
                                     {
                                         string[] studentInfo = line.Split(',');
                                         string studentSRCode = studentInfo[0].Trim(); // Assuming SR code is the first element
@@ -590,14 +635,12 @@ namespace Pedagohiya
                                         string firstName = studentInfo[2].Trim(); // Assuming first name is the third element
                                         string middleName = studentInfo[3].Trim(); // Assuming middle name is the fourth element
                                         string middleInitial = string.IsNullOrEmpty(middleName) ? "" : $"{middleName[0]}.";
-                                        string fullName = $"{firstName} {middleName} {lastName}"; // Full name with middle initial
+                                        string fullName = $"{firstName} {middleName} {lastName}"; 
 
-                                        string subjectName = Path.GetFileName(Path.GetDirectoryName(sectionFolder)); // Get subject name from parent folder
+                                        string subjectName = Path.GetFileName(Path.GetDirectoryName(sectionFolder)); 
 
-                                        // Unique key for each student
                                         string studentKey = $"{fullName},{studentSRCode}";
 
-                                        // Store detailed information
                                         string sectionAndSubject = $"{sectionName} ({subjectName})";
 
                                         if (!studentDetailsDict.ContainsKey(studentKey))
@@ -620,14 +663,12 @@ namespace Pedagohiya
                         }
                     }
                 }
-
                 foreach (var student in studentDetailsDict)
                 {
                     string[] studentKeyParts = student.Key.Split(',');
                     string fullName = studentKeyParts[0];
                     string studentSRCode = studentKeyParts[1];
 
-                    // Add name and SR code to listBoxResult
                     string displayInfo = $"{fullName} ({studentSRCode})";
                     listBoxResult.Items.Add(displayInfo);
                 }
@@ -658,10 +699,7 @@ namespace Pedagohiya
                 }
             }
         }
-        private void textBoxInput_Click(object sender, EventArgs e)
-        {
-            textBoxInput.Text = "";
-        }
+
 
         private static readonly Random random = new Random();
         public void Click()
@@ -679,11 +717,8 @@ namespace Pedagohiya
                     LoadClickSound(@"Assets\click3.wav");
                     waveOut.Play();
                 }
-
             }
-
         }
-
         private void LoadClickSound(string filePath)
         {
             try

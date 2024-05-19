@@ -145,7 +145,7 @@ namespace Pedagohiya.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap icons8_search_52 {
             get {
-                object obj = ResourceManager.GetObject("icons8-search-52", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_search_52", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
