@@ -17,10 +17,12 @@ namespace Pedagohiya
     {
         private string username;
         string basePath = @"CSV Files\";
+        private WaveOut waveOut;
         public Students(string username)
         {
             InitializeComponent();
             this.username = username;
+            waveOut = new WaveOut();
         }
         public Students()
         {
@@ -163,7 +165,7 @@ namespace Pedagohiya
         {
             labelNewName.Visible = false;
             labelSubjectName.Visible = true;
-
+            Click();
 
             string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
             string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
@@ -659,6 +661,45 @@ namespace Pedagohiya
         private void textBoxInput_Click(object sender, EventArgs e)
         {
             textBoxInput.Text = "";
+        }
+
+        private static readonly Random random = new Random();
+        public void Click()
+        {
+            if (!SoundManager.IsMuted)
+            {
+                var soundKey = random.Next(0, 2) == 0 ? "1" : "2";
+                if (soundKey == "1")
+                {
+                    LoadClickSound(@"Assets\342200__christopherderp__videogame-menu-button-click.wav");
+                    waveOut.Play();
+                }
+                else
+                {
+                    LoadClickSound(@"Assets\click3.wav");
+                    waveOut.Play();
+                }
+
+            }
+
+        }
+
+        private void LoadClickSound(string filePath)
+        {
+            try
+            {
+                var audioFileReader = new AudioFileReader(filePath);
+                waveOut.Init(audioFileReader);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading click sound: " + ex.Message);
+            }
+        }
+
+        private void Clicks(object sender, EventArgs e)
+        {
+            Click();
         }
     }
 }

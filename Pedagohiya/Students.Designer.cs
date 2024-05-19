@@ -236,6 +236,7 @@
             tabControl3.Size = new Size(1229, 718);
             tabControl3.SizeMode = TabSizeMode.Fixed;
             tabControl3.TabIndex = 20;
+            tabControl3.Click += Clicks;
             // 
             // tabPage6
             // 
@@ -657,6 +658,7 @@
             SemesterComboBox.TabIndex = 17;
             SemesterComboBox.Text = "Semester:";
             SemesterComboBox.SelectedIndexChanged += SemesterComboBox_SelectedIndexChanged;
+            SemesterComboBox.Click += Clicks;
             // 
             // SchoolYearComboBox
             // 
@@ -670,6 +672,7 @@
             SchoolYearComboBox.TabIndex = 16;
             SchoolYearComboBox.Text = "School Year:";
             SchoolYearComboBox.SelectedIndexChanged += SchoolYearComboBox_SelectedIndexChanged;
+            SchoolYearComboBox.Click += Clicks;
             // 
             // Students
             // 
