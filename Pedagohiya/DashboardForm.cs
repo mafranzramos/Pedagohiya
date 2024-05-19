@@ -13,7 +13,17 @@ using Microsoft.VisualBasic.FileIO;
 using NAudio.Wave;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace Pedagohiya
-{//
+{
+    public static class SoundManager
+    {
+        public static bool IsMuted { get; private set; } = false;
+
+        public static void ToggleMute()
+        {
+            IsMuted = !IsMuted;
+        }
+    }
+
     public partial class DashboardForm : Form
     {
         private WaveOut waveOut;
@@ -37,14 +47,13 @@ namespace Pedagohiya
             dashboard1.Dock = DockStyle.Fill;
             SettingsPanel.Dock = DockStyle.Fill;
             StudentPanel.Dock = DockStyle.Fill;
-            //ProfilePanel.Dock = DockStyle.Fill;
             AttendancePanel.Dock = DockStyle.Fill;
             DashboardPanel.Dock = DockStyle.Fill;
         }
 
         public void CloseDashboard()
         {
-            this.Close(); // This will close the Dashboard form
+            this.Close(); 
         }
         private void LoadClickSound(string filePath)
         {
@@ -109,15 +118,22 @@ namespace Pedagohiya
             //ProfilePanel.Visible = false;
 
         }
-        private void Click1()
+        public void Click1()
         {
-            LoadClickSound(@"Assets\342200__christopherderp__videogame-menu-button-click.wav"); // Load the sound before playing
-            waveOut.Play();
+            if (!SoundManager.IsMuted)
+            {
+                LoadClickSound(@"Assets\342200__christopherderp__videogame-menu-button-click.wav");
+                waveOut.Play();
+            }
         }
-        private void Click2()
+
+        public void Click2()
         {
-            LoadClickSound(@"Assets\click3.wav"); // Load the sound before playing
-            waveOut.Play();
+            if (!SoundManager.IsMuted)
+            {
+                LoadClickSound(@"Assets\click3.wav");
+                waveOut.Play();
+            }
         }
     }
 }

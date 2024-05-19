@@ -20,13 +20,18 @@ namespace Pedagohiya
             UserProfileManager.ClearSavedProfile();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-             this.ParentForm.Hide();
+            this.ParentForm.Hide();
         }
 
         private void btnLogoutQuit_Click(object sender, EventArgs e)
         {
             UserProfileManager.ClearSavedProfile();
             Application.Exit();
+        }
+
+        private void btnMute_Click(object sender, EventArgs e)
+        {
+            SoundManager.ToggleMute();
         }
     }
 }
