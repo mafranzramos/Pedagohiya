@@ -38,7 +38,6 @@
             SemesterComboBox = new ComboBox();
             checkedListBoxStudent = new CheckedListBox();
             SchoolYearComboBox = new ComboBox();
-            Viewing = new TabPage();
             tabControl3.SuspendLayout();
             Marking.SuspendLayout();
             SuspendLayout();
@@ -91,7 +90,6 @@
             // 
             tabControl3.Appearance = TabAppearance.FlatButtons;
             tabControl3.Controls.Add(Marking);
-            tabControl3.Controls.Add(Viewing);
             tabControl3.Cursor = Cursors.Hand;
             tabControl3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabControl3.ItemSize = new Size(260, 50);
@@ -105,6 +103,7 @@
             tabControl3.Size = new Size(1229, 718);
             tabControl3.SizeMode = TabSizeMode.Fixed;
             tabControl3.TabIndex = 22;
+            tabControl3.Click += tabControl3_Click;
             // 
             // Marking
             // 
@@ -172,16 +171,6 @@
             SchoolYearComboBox.Text = "School Year:";
             SchoolYearComboBox.SelectedIndexChanged += YearSemComboBox_SelectedIndexChanged;
             // 
-            // Viewing
-            // 
-            Viewing.BackColor = Color.FromArgb(67, 101, 208);
-            Viewing.Location = new Point(4, 54);
-            Viewing.Name = "Viewing";
-            Viewing.Padding = new Padding(3);
-            Viewing.Size = new Size(1221, 660);
-            Viewing.TabIndex = 1;
-            Viewing.Text = "View Attendance";
-            // 
             // Attendance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,7 +195,6 @@
         private DateTimePicker dateTimePicker1;
         private TabControl tabControl3;
         private TabPage Marking;
-        private TabPage Viewing;
         private ComboBox SchoolYearComboBox;
         private ComboBox SemesterComboBox;
         private CheckedListBox checkedListBoxStudent;
