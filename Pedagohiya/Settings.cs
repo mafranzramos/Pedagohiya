@@ -14,6 +14,8 @@ namespace Pedagohiya
     public partial class Settings : UserControl
     {
         private WaveOut waveOut;
+        private DashboardForm _dashboardForm;
+
         public Settings()
         {
             InitializeComponent();
@@ -22,8 +24,14 @@ namespace Pedagohiya
             float volumeLevel = (float)trackBar1.Value / trackBar1.Maximum;
             lbl_Volume.Text = $"Volume: {Math.Round(volumeLevel * 100f)}%"; // Format as percentage
             SoundManager.VolumeLevel = volumeLevel;
-
         }
+
+        public DashboardForm DashboardForm
+        {
+            get => _dashboardForm;
+            set => _dashboardForm = value;
+        }
+ 
         private void btnChangeProfile_Click(object sender, EventArgs e)
         {
             UserProfileManager.ClearSavedProfile();
@@ -64,6 +72,7 @@ namespace Pedagohiya
         {
             Click1();
         }
+
         public void Click1()
         {
             if (!SoundManager.IsMuted)
@@ -81,6 +90,7 @@ namespace Pedagohiya
                 waveOut.Play();
             }
         }
+
         private void LoadClickSound(string filePath)
         {
             try
@@ -114,7 +124,53 @@ namespace Pedagohiya
             lbl_Volume.Text = $"Volume: {Math.Round(volumeLevel * 100f)}%";
             SoundManager.VolumeLevel = volumeLevel;
         }
+
+        private void linkLabelIcons8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenUrl("https://icons8.com");
+        }
+
+        private void linkLabelFreeSound_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenUrl("https://freesound.org/");
+        }
+
+        private void OpenUrl(string url)
+        {
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true // This will use the default web browser
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred trying to open the URL: " + ex.Message);
+            }
+        }
+
+
+
+        private void Color_Change(object sender, EventArgs e)
+        {
+            if (DashboardForm != null)
+            {
+                if (sender is Button button)
+                {
+                    
+                    Color buttonBackColor = button.BackColor;
+                    panel2.BackColor = buttonBackColor;
+                    DashboardForm.FlowLayoutPanelBackColor = buttonBackColor;
+                    if (DashboardForm.StudentPanel!= null)
+                    {
+                        DashboardForm.StudentPanel.PanelBackColor = buttonBackColor;
+                    }
+                }
+            }
+        }
     }
+
 }
-
-

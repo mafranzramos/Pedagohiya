@@ -17,7 +17,9 @@ namespace Pedagohiya
     public partial class DashboardForm : Form
     {
         private WaveOut waveOut;
-        private Students StudentPanel;
+
+        public Students StudentPanel { get; set; }
+
         public DashboardForm()
         {
             MessageBox.Show("DAPAT HINDI TO MADAANAN");
@@ -30,7 +32,30 @@ namespace Pedagohiya
             lblUsername.Text = "Hello, " + username + "!";
             waveOut = new WaveOut();
             DockFull();
+            InitializeSettingsControl();
+        }
+        private void InitializeSettingsControl()
+        {
+            // Assuming SettingsPanel is a Panel control that contains the Settings UserControl
+            var settingsControl = mainContainer.Controls.OfType<Settings>().FirstOrDefault();
+            if (settingsControl != null)
+            {
+                settingsControl.DashboardForm = this;
+            }
+            else
+            {
+                MessageBox.Show("Settings control not found");
+            }
+        }
 
+        public Color FlowLayoutPanelBackColor
+        {
+            get => flowLayoutPanel1.BackColor;
+            set
+            {
+                flowLayoutPanel1.BackColor = value;
+                panel5.BackColor = value;
+            }
         }
         public void DockFull()
         {
@@ -43,7 +68,7 @@ namespace Pedagohiya
 
         public void CloseDashboard()
         {
-            this.Close(); 
+            this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -126,6 +151,65 @@ namespace Pedagohiya
             {
                 MessageBox.Show("Error loading click sound: " + ex.Message);
             }
+        }
+        private bool isDuckVisible = false;
+
+        private void lblUsername_Click(object sender, EventArgs e)
+        {
+            isDuckVisible = !isDuckVisible;
+            duck_Pic.Visible = isDuckVisible;
+        }
+        private bool is8ballVisible = false;
+        private void label1_Click(object sender, EventArgs e)
+        {
+            MagicLabel.Text = "Hmm..";
+            is8ballVisible = !is8ballVisible;
+            magic8ball.Visible = is8ballVisible;
+        }
+
+        private void duck_Pic_Click(object sender, EventArgs e)
+        {
+            var soundKey = random.Next(0, 3);
+            switch (soundKey)
+            {
+                case 0:
+                    LoadClickSound(@"Assets\333916__lextrack__cat-meowing.mp3");
+                    waveOut.Play();
+                    break;
+                case 1:
+                    LoadClickSound(@"Assets\24730__propthis__squeak2.wav");
+                    waveOut.Play();
+                    break;
+                case 2:
+                    LoadClickSound(@"Assets\372529__glitchedtones__dog-shih-tzu-bark-x3-01.wav");
+                    waveOut.Play();
+                    break;
+            }
+
+        }
+        private void magic_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            string[] answers = {
+            "It is certain.",
+            "Ask again later.",
+            "No",
+            "Most likely.",
+            "Outlook good.",
+            "Signs point to yes.",
+            "Don't count on it.",
+            "Very doubtful.",
+            "Ask your mom",
+            "Why not",
+            "Yes? Yes!",
+            "Nah",
+            "Duh",
+            "NOOOOOOO ! ! !",
+            "YESSSSSSS ! ! !"
+        };
+
+            int randomIndex = random.Next(answers.Length);
+            MagicLabel.Text = answers[randomIndex];
         }
     }
 }

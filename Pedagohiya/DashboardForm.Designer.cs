@@ -37,8 +37,12 @@ namespace Pedagohiya
             flowLayoutPanel1 = new FlowLayoutPanel();
             lblUsername = new Label();
             btnDashboard = new Button();
+            duck_Pic = new PictureBox();
             btnAttendance = new Button();
             btnTasks = new Button();
+            magic8ball = new Panel();
+            MagicLabel = new Label();
+            pictureBox1 = new PictureBox();
             btnSubmission = new Button();
             btnClassManagement = new Button();
             btnSettings = new Button();
@@ -74,6 +78,9 @@ namespace Pedagohiya
             btnMinimize = new Button();
             btnClose = new Button();
             flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)duck_Pic).BeginInit();
+            magic8ball.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -106,14 +113,17 @@ namespace Pedagohiya
             label1.Size = new Size(175, 32);
             label1.TabIndex = 2;
             label1.Text = "PEDAGOHIYA";
+            label1.Click += label1_Click;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.BackColor = Color.Gainsboro;
+            flowLayoutPanel1.BackColor = Color.FromArgb(66, 100, 208);
             flowLayoutPanel1.Controls.Add(lblUsername);
             flowLayoutPanel1.Controls.Add(btnDashboard);
+            flowLayoutPanel1.Controls.Add(duck_Pic);
             flowLayoutPanel1.Controls.Add(btnAttendance);
             flowLayoutPanel1.Controls.Add(btnTasks);
+            flowLayoutPanel1.Controls.Add(magic8ball);
             flowLayoutPanel1.Controls.Add(btnSubmission);
             flowLayoutPanel1.Controls.Add(btnClassManagement);
             flowLayoutPanel1.Controls.Add(btnSettings);
@@ -123,7 +133,7 @@ namespace Pedagohiya
             flowLayoutPanel1.Margin = new Padding(10);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Padding = new Padding(15);
-            flowLayoutPanel1.Size = new Size(254, 663);
+            flowLayoutPanel1.Size = new Size(254, 884);
             flowLayoutPanel1.TabIndex = 5;
             // 
             // lblUsername
@@ -138,6 +148,7 @@ namespace Pedagohiya
             lblUsername.TabIndex = 3;
             lblUsername.Text = "Pick a profile first!";
             lblUsername.TextAlign = ContentAlignment.MiddleCenter;
+            lblUsername.Click += lblUsername_Click;
             // 
             // btnDashboard
             // 
@@ -147,6 +158,7 @@ namespace Pedagohiya
             btnDashboard.FlatAppearance.BorderSize = 3;
             btnDashboard.FlatStyle = FlatStyle.Flat;
             btnDashboard.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.ForeColor = Color.Black;
             btnDashboard.Image = Properties.Resources.dashboard;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
             btnDashboard.Location = new Point(25, 50);
@@ -160,6 +172,19 @@ namespace Pedagohiya
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
             // 
+            // duck_Pic
+            // 
+            duck_Pic.BackgroundImageLayout = ImageLayout.None;
+            duck_Pic.Image = Properties.Resources.XOsX;
+            duck_Pic.Location = new Point(18, 117);
+            duck_Pic.Name = "duck_Pic";
+            duck_Pic.Size = new Size(208, 100);
+            duck_Pic.SizeMode = PictureBoxSizeMode.Zoom;
+            duck_Pic.TabIndex = 11;
+            duck_Pic.TabStop = false;
+            duck_Pic.Visible = false;
+            duck_Pic.Click += duck_Pic_Click;
+            // 
             // btnAttendance
             // 
             btnAttendance.BackColor = Color.White;
@@ -170,7 +195,7 @@ namespace Pedagohiya
             btnAttendance.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAttendance.Image = Properties.Resources.itask;
             btnAttendance.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAttendance.Location = new Point(25, 124);
+            btnAttendance.Location = new Point(25, 230);
             btnAttendance.Margin = new Padding(10);
             btnAttendance.Name = "btnAttendance";
             btnAttendance.Padding = new Padding(16, 0, 0, 0);
@@ -191,7 +216,7 @@ namespace Pedagohiya
             btnTasks.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTasks.Image = Properties.Resources.icons8_high_priority_26;
             btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTasks.Location = new Point(25, 198);
+            btnTasks.Location = new Point(25, 304);
             btnTasks.Margin = new Padding(10);
             btnTasks.Name = "btnTasks";
             btnTasks.Padding = new Padding(16, 0, 0, 0);
@@ -200,6 +225,38 @@ namespace Pedagohiya
             btnTasks.Text = "        Tasks";
             btnTasks.TextAlign = ContentAlignment.MiddleLeft;
             btnTasks.UseVisualStyleBackColor = false;
+            // 
+            // magic8ball
+            // 
+            magic8ball.Controls.Add(MagicLabel);
+            magic8ball.Controls.Add(pictureBox1);
+            magic8ball.Location = new Point(18, 371);
+            magic8ball.Name = "magic8ball";
+            magic8ball.Size = new Size(208, 116);
+            magic8ball.TabIndex = 15;
+            magic8ball.Visible = false;
+            // 
+            // MagicLabel
+            // 
+            MagicLabel.AutoSize = true;
+            MagicLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            MagicLabel.Location = new Point(3, 97);
+            MagicLabel.Name = "MagicLabel";
+            MagicLabel.Size = new Size(60, 20);
+            MagicLabel.TabIndex = 13;
+            MagicLabel.Text = "Hmm...";
+            MagicLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.billiard;
+            pictureBox1.Location = new Point(61, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(88, 94);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 12;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += magic_Click;
             // 
             // btnSubmission
             // 
@@ -211,7 +268,7 @@ namespace Pedagohiya
             btnSubmission.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmission.Image = Properties.Resources.submit;
             btnSubmission.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSubmission.Location = new Point(25, 272);
+            btnSubmission.Location = new Point(25, 500);
             btnSubmission.Margin = new Padding(10);
             btnSubmission.Name = "btnSubmission";
             btnSubmission.Padding = new Padding(16, 0, 0, 0);
@@ -231,7 +288,7 @@ namespace Pedagohiya
             btnClassManagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClassManagement.Image = Properties.Resources.student;
             btnClassManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClassManagement.Location = new Point(25, 346);
+            btnClassManagement.Location = new Point(25, 574);
             btnClassManagement.Margin = new Padding(10);
             btnClassManagement.Name = "btnClassManagement";
             btnClassManagement.Padding = new Padding(16, 0, 0, 0);
@@ -252,7 +309,7 @@ namespace Pedagohiya
             btnSettings.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSettings.Image = Properties.Resources.settings;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.Location = new Point(25, 431);
+            btnSettings.Location = new Point(25, 659);
             btnSettings.Margin = new Padding(10);
             btnSettings.Name = "btnSettings";
             btnSettings.Padding = new Padding(16, 0, 0, 0);
@@ -580,7 +637,7 @@ namespace Pedagohiya
             mainContainer.Location = new Point(254, 62);
             mainContainer.Margin = new Padding(3, 2, 3, 2);
             mainContainer.Name = "mainContainer";
-            mainContainer.Size = new Size(1246, 601);
+            mainContainer.Size = new Size(1273, 822);
             mainContainer.TabIndex = 6;
             // 
             // StudentPanel
@@ -589,7 +646,7 @@ namespace Pedagohiya
             StudentPanel.Dock = DockStyle.Top;
             StudentPanel.Location = new Point(0, 323);
             StudentPanel.Name = "StudentPanel";
-            StudentPanel.Size = new Size(1246, 51);
+            StudentPanel.Size = new Size(1273, 51);
             StudentPanel.TabIndex = 7;
             StudentPanel.Visible = false;
             // 
@@ -599,18 +656,20 @@ namespace Pedagohiya
             AttendancePanel.Location = new Point(0, 186);
             AttendancePanel.Margin = new Padding(3, 4, 3, 4);
             AttendancePanel.Name = "AttendancePanel";
-            AttendancePanel.Size = new Size(1246, 137);
+            AttendancePanel.Size = new Size(1273, 137);
             AttendancePanel.TabIndex = 4;
             AttendancePanel.Visible = false;
             // 
             // SettingsPanel
             // 
             SettingsPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            SettingsPanel.BackColor = Color.White;
+            SettingsPanel.DashboardForm = null;
             SettingsPanel.Dock = DockStyle.Top;
             SettingsPanel.Location = new Point(0, 77);
             SettingsPanel.Margin = new Padding(3, 4, 3, 4);
             SettingsPanel.Name = "SettingsPanel";
-            SettingsPanel.Size = new Size(1246, 109);
+            SettingsPanel.Size = new Size(1273, 109);
             SettingsPanel.TabIndex = 2;
             SettingsPanel.Visible = false;
             // 
@@ -620,7 +679,7 @@ namespace Pedagohiya
             dashboard1.Location = new Point(0, 0);
             dashboard1.Margin = new Padding(3, 4, 3, 4);
             dashboard1.Name = "dashboard1";
-            dashboard1.Size = new Size(1246, 77);
+            dashboard1.Size = new Size(1273, 77);
             dashboard1.TabIndex = 1;
             // 
             // DashboardPanel
@@ -631,11 +690,12 @@ namespace Pedagohiya
             DashboardPanel.Dock = DockStyle.Fill;
             DashboardPanel.Location = new Point(0, 0);
             DashboardPanel.Name = "DashboardPanel";
-            DashboardPanel.Size = new Size(1527, 663);
+            DashboardPanel.Size = new Size(1527, 884);
             DashboardPanel.TabIndex = 18;
             // 
             // panel5
             // 
+            panel5.BackColor = Color.FromArgb(66, 100, 208);
             panel5.Controls.Add(btnMinimize);
             panel5.Controls.Add(btnClose);
             panel5.Controls.Add(label1);
@@ -689,7 +749,7 @@ namespace Pedagohiya
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1527, 663);
+            ClientSize = new Size(1527, 884);
             ControlBox = false;
             Controls.Add(DashboardPanel);
             Controls.Add(label5);
@@ -701,6 +761,10 @@ namespace Pedagohiya
             WindowState = FormWindowState.Maximized;
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)duck_Pic).EndInit();
+            magic8ball.ResumeLayout(false);
+            magic8ball.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
@@ -761,5 +825,9 @@ namespace Pedagohiya
         private Button btnMinimize;
         private Dashboard dashboard1;
         private Attendance AttendancePanel;
+        private PictureBox duck_Pic;
+        private PictureBox pictureBox1;
+        private Label MagicLabel;
+        private Panel magic8ball;
     }
 }

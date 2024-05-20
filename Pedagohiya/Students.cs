@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 using NAudio.Wave;
+using System.Windows.Forms;
 
 namespace Pedagohiya
 {
@@ -28,6 +29,12 @@ namespace Pedagohiya
         {
             InitializeComponent();
         }
+        public Color PanelBackColor
+        {
+            get => panel2.BackColor;
+            set => panel2.BackColor = value;
+        }
+
 
         private void Students_Load(object sender, EventArgs e)
         {

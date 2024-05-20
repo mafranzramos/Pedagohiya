@@ -71,6 +71,7 @@
             textBoxSearch = new TextBox();
             SemesterComboBox = new ComboBox();
             SchoolYearComboBox = new ComboBox();
+            panel2 = new Panel();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tabControl3.SuspendLayout();
@@ -80,6 +81,7 @@
             tabPage1.SuspendLayout();
             StudentInfo_Panel.SuspendLayout();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // SubjectList
@@ -88,10 +90,10 @@
             SubjectList.FormattingEnabled = true;
             SubjectList.HorizontalScrollbar = true;
             SubjectList.ItemHeight = 32;
-            SubjectList.Location = new Point(623, 104);
+            SubjectList.Location = new Point(604, 101);
             SubjectList.Name = "SubjectList";
             SubjectList.SelectionMode = SelectionMode.None;
-            SubjectList.Size = new Size(559, 452);
+            SubjectList.Size = new Size(531, 452);
             SubjectList.TabIndex = 9;
             // 
             // label3
@@ -128,12 +130,12 @@
             tableLayoutPanel2.Controls.Add(checkBoxStudent, 2, 1);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 1, 1);
             tableLayoutPanel2.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
-            tableLayoutPanel2.Location = new Point(18, 60);
+            tableLayoutPanel2.Location = new Point(11, 57);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.2023811F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 87.79762F));
-            tableLayoutPanel2.Size = new Size(1172, 503);
+            tableLayoutPanel2.Size = new Size(1162, 503);
             tableLayoutPanel2.TabIndex = 16;
             // 
             // textBoxInput
@@ -146,7 +148,7 @@
             textBoxInput.Name = "textBoxInput";
             textBoxInput.PlaceholderText = "SRCode, Last Name, First Name, Middle Name";
             textBoxInput.ScrollBars = ScrollBars.Both;
-            textBoxInput.Size = new Size(543, 436);
+            textBoxInput.Size = new Size(534, 436);
             textBoxInput.TabIndex = 22;
             // 
             // checkBoxStudent
@@ -156,7 +158,7 @@
             checkBoxStudent.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             checkBoxStudent.FormattingEnabled = true;
             checkBoxStudent.HorizontalScrollbar = true;
-            checkBoxStudent.Location = new Point(647, 64);
+            checkBoxStudent.Location = new Point(637, 64);
             checkBoxStudent.Name = "checkBoxStudent";
             checkBoxStudent.ScrollAlwaysVisible = true;
             checkBoxStudent.Size = new Size(522, 436);
@@ -169,12 +171,12 @@
             tableLayoutPanel1.Controls.Add(btnPush, 0, 0);
             tableLayoutPanel1.Controls.Add(btnPull, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(552, 64);
+            tableLayoutPanel1.Location = new Point(543, 64);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(89, 436);
+            tableLayoutPanel1.Size = new Size(88, 436);
             tableLayoutPanel1.TabIndex = 26;
             // 
             // btnPush
@@ -190,7 +192,7 @@
             btnPush.Location = new Point(10, 10);
             btnPush.Margin = new Padding(10);
             btnPush.Name = "btnPush";
-            btnPush.Size = new Size(69, 198);
+            btnPush.Size = new Size(68, 198);
             btnPush.TabIndex = 23;
             btnPush.TextAlign = ContentAlignment.MiddleLeft;
             btnPush.UseVisualStyleBackColor = false;
@@ -209,7 +211,7 @@
             btnPull.Location = new Point(10, 228);
             btnPull.Margin = new Padding(10);
             btnPull.Name = "btnPull";
-            btnPull.Size = new Size(69, 198);
+            btnPull.Size = new Size(68, 198);
             btnPull.TabIndex = 24;
             btnPull.TextAlign = ContentAlignment.MiddleLeft;
             btnPull.UseVisualStyleBackColor = false;
@@ -225,21 +227,21 @@
             tabControl3.Cursor = Cursors.Hand;
             tabControl3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabControl3.ItemSize = new Size(260, 50);
-            tabControl3.Location = new Point(22, 77);
+            tabControl3.Location = new Point(13, 17);
             tabControl3.Multiline = true;
             tabControl3.Name = "tabControl3";
             tabControl3.Padding = new Point(5, 5);
             tabControl3.RightToLeft = RightToLeft.No;
             tabControl3.RightToLeftLayout = true;
             tabControl3.SelectedIndex = 0;
-            tabControl3.Size = new Size(1229, 718);
+            tabControl3.Size = new Size(1187, 681);
             tabControl3.SizeMode = TabSizeMode.Fixed;
             tabControl3.TabIndex = 20;
             tabControl3.Click += Clicks;
             // 
             // tabPage6
             // 
-            tabPage6.BackColor = Color.White;
+            tabPage6.BackColor = SystemColors.Control;
             tabPage6.Controls.Add(labelSubjectName);
             tabPage6.Controls.Add(labelNewName);
             tabPage6.Controls.Add(btnDeleteSubject);
@@ -249,7 +251,7 @@
             tabPage6.Controls.Add(label2);
             tabPage6.Location = new Point(4, 54);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1221, 660);
+            tabPage6.Size = new Size(1179, 623);
             tabPage6.TabIndex = 2;
             tabPage6.Text = "Subject Actions";
             // 
@@ -334,7 +336,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(765, 36);
+            label2.Location = new Point(726, 37);
             label2.Name = "label2";
             label2.Size = new Size(307, 50);
             label2.TabIndex = 8;
@@ -342,7 +344,7 @@
             // 
             // tabPage5
             // 
-            tabPage5.BackColor = Color.White;
+            tabPage5.BackColor = SystemColors.Control;
             tabPage5.Controls.Add(textBoxSection);
             tabPage5.Controls.Add(btnEditSection);
             tabPage5.Controls.Add(btnDeleteSection);
@@ -355,7 +357,7 @@
             tabPage5.Location = new Point(4, 54);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1221, 660);
+            tabPage5.Size = new Size(1179, 623);
             tabPage5.TabIndex = 1;
             tabPage5.Text = "Section Actions";
             // 
@@ -449,10 +451,10 @@
             SectionList.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             SectionList.FormattingEnabled = true;
             SectionList.ItemHeight = 32;
-            SectionList.Location = new Point(634, 365);
+            SectionList.Location = new Point(617, 354);
             SectionList.Name = "SectionList";
             SectionList.SelectionMode = SelectionMode.None;
-            SectionList.Size = new Size(559, 132);
+            SectionList.Size = new Size(517, 132);
             SectionList.TabIndex = 12;
             // 
             // label5
@@ -460,7 +462,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Black", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(796, 301);
+            label5.Location = new Point(757, 301);
             label5.Name = "label5";
             label5.Size = new Size(268, 50);
             label5.TabIndex = 11;
@@ -471,9 +473,9 @@
             SubjectListSection.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             SubjectListSection.FormattingEnabled = true;
             SubjectListSection.ItemHeight = 32;
-            SubjectListSection.Location = new Point(634, 87);
+            SubjectListSection.Location = new Point(617, 76);
             SubjectListSection.Name = "SubjectListSection";
-            SubjectListSection.Size = new Size(559, 132);
+            SubjectListSection.Size = new Size(517, 132);
             SubjectListSection.TabIndex = 10;
             SubjectListSection.SelectedIndexChanged += SubjectListSection_SelectedIndexChanged;
             // 
@@ -482,7 +484,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Black", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(757, 23);
+            label4.Location = new Point(705, 23);
             label4.Name = "label4";
             label4.Size = new Size(351, 50);
             label4.TabIndex = 9;
@@ -490,7 +492,7 @@
             // 
             // tabPage4
             // 
-            tabPage4.BackColor = Color.White;
+            tabPage4.BackColor = SystemColors.Control;
             tabPage4.Controls.Add(comboBoxSection);
             tabPage4.Controls.Add(btnDeleteTextTextBox);
             tabPage4.Controls.Add(tableLayoutPanel2);
@@ -500,7 +502,7 @@
             tabPage4.Margin = new Padding(7);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1221, 660);
+            tabPage4.Size = new Size(1179, 623);
             tabPage4.TabIndex = 0;
             tabPage4.Text = "Student Actions";
             // 
@@ -525,7 +527,7 @@
             btnDeleteTextTextBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDeleteTextTextBox.Image = Properties.Resources.upHere6;
             btnDeleteTextTextBox.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDeleteTextTextBox.Location = new Point(18, 576);
+            btnDeleteTextTextBox.Location = new Point(18, 573);
             btnDeleteTextTextBox.Margin = new Padding(10);
             btnDeleteTextTextBox.Name = "btnDeleteTextTextBox";
             btnDeleteTextTextBox.Padding = new Padding(16, 0, 0, 0);
@@ -543,7 +545,7 @@
             tabPage1.Controls.Add(textBoxSearch);
             tabPage1.Location = new Point(4, 54);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1221, 660);
+            tabPage1.Size = new Size(1179, 623);
             tabPage1.TabIndex = 3;
             tabPage1.Text = "Search Student";
             tabPage1.UseVisualStyleBackColor = true;
@@ -554,7 +556,7 @@
             StudentInfo_Panel.Controls.Add(Label_Section);
             StudentInfo_Panel.Controls.Add(Label_Subject);
             StudentInfo_Panel.Controls.Add(label6);
-            StudentInfo_Panel.Location = new Point(566, 22);
+            StudentInfo_Panel.Location = new Point(542, 21);
             StudentInfo_Panel.Name = "StudentInfo_Panel";
             StudentInfo_Panel.Size = new Size(624, 606);
             StudentInfo_Panel.TabIndex = 22;
@@ -674,13 +676,22 @@
             SchoolYearComboBox.SelectedIndexChanged += SchoolYearComboBox_SelectedIndexChanged;
             SchoolYearComboBox.Click += Clicks;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(66, 100, 208);
+            panel2.Controls.Add(tabControl3);
+            panel2.Location = new Point(33, 67);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1215, 714);
+            panel2.TabIndex = 21;
+            // 
             // Students
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = SystemColors.Control;
+            Controls.Add(panel2);
             Controls.Add(SemesterComboBox);
-            Controls.Add(tabControl3);
             Controls.Add(SchoolYearComboBox);
             Controls.Add(label3);
             Name = "Students";
@@ -701,6 +712,7 @@
             StudentInfo_Panel.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -749,5 +761,6 @@
         private Label Label_SRCode;
         private Label Label_Name;
         private Panel panel1;
+        private Panel panel2;
     }
 }
