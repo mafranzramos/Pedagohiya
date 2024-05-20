@@ -131,6 +131,7 @@ namespace Pedagohiya
         {
             Click();
             AttendancePanel.Visible = true;
+            taskPanel.Visible = false;
             dashboard1.Visible = false;
             SettingsPanel.Visible = false;
             StudentPanel.Visible = false;

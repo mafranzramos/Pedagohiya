@@ -25,7 +25,6 @@ namespace Pedagohiya
             InitializeComponent();
             FixCalendar();
             insertTexts();
-            PopulateYearRangeComboBox();
 
             cmbSem.SelectedIndexChanged += Cmb_SelectedIndexChanged;
             cmbSY.SelectedIndexChanged += Cmb_SelectedIndexChanged;
@@ -34,8 +33,9 @@ namespace Pedagohiya
         private void dashboard_Load(object sender, EventArgs e)
         {
             FixCalendar();
-            cmbSem.SelectedIndex = 0;
+            PopulateYearRangeComboBox();
             cmbSY.SelectedIndex = 0;
+            cmbSem.SelectedIndex = 1;
             getTotalSubInfo();
             lblSemester.Text = cmbSY.SelectedItem.ToString() + " AY";
             lblSY.Text = cmbSem.SelectedItem.ToString() + " SEMESTER";
@@ -45,6 +45,7 @@ namespace Pedagohiya
             getTotalSubInfo();
             lblSemester.Text = cmbSY.SelectedItem.ToString() + " AY";
             lblSY.Text = cmbSem.SelectedItem.ToString() + " SEMESTER";
+            DisplayEarliestTasks();
 
         }
         public void insertTexts()
@@ -136,6 +137,7 @@ namespace Pedagohiya
         }
         private void PopulateYearRangeComboBox()
         {
+            cmbSY.Items.Clear();
             int currentYear = DateTime.Now.Year;
             int startYear = currentYear - 1;
             int endYear = DateTime.Now.Year + 1; // Get current year and add 1 for next year
@@ -192,9 +194,127 @@ namespace Pedagohiya
 
             }
 
-            
+
         }
-  
+        private void DisplayEarliestTasks()
+        {
+            // Ensure year and semester are selected
+            if (cmbSY.SelectedItem == null || cmbSem.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a year and semester.");
+                return;
+            }
+
+
+            string selectedYear = cmbSY.SelectedItem.ToString();
+            string selectedSemester = cmbSem.SelectedItem.ToString();
+
+
+            // Base path for task CSV files
+            string taskBasePath = Path.Combine(basePath, username, selectedYear, selectedSemester);
+
+
+            // Get all task files
+            List<TaskItem> allTasks = new List<TaskItem>();
+
+
+            foreach (string file in Directory.GetFiles(taskBasePath, "*_taskList.csv", System.IO.SearchOption.AllDirectories))
+            {
+                var tasks = ReadTasksFromCsv(file);
+                allTasks.AddRange(tasks);
+            }
+
+
+            // Sort tasks by deadline
+            var sortedTasks = allTasks.OrderBy(t => t.Deadline).Take(3).ToList();
+
+
+            // Update labels
+            if (sortedTasks.Count > 0)
+            {
+                lblSubmiTask1.Text = sortedTasks[0].Title;
+                lblSubmiDate1.Text = sortedTasks[0].Deadline.ToString("MMMM dd, yyyy");
+            }
+            else
+            {
+                lblSubmiTask1.Text = string.Empty;
+                lblSubmiDate1.Text = string.Empty;
+            }
+
+
+            if (sortedTasks.Count > 1)
+            {
+                lblSubmiTask2.Text = sortedTasks[1].Title;
+                lblSubmiDate2.Text = sortedTasks[1].Deadline.ToString("MMMM dd, yyyy");
+            }
+            else
+            {
+                lblSubmiTask2.Text = string.Empty;
+                lblSubmiDate2.Text = string.Empty;
+            }
+
+            if (sortedTasks.Count > 2)
+            {
+                lblSubmiTask3.Text = sortedTasks[2].Title;
+                lblSubmiDate3.Text = sortedTasks[2].Deadline.ToString("MMMM dd, yyyy");
+            }
+            else
+            {
+                lblSubmiTask3.Text = string.Empty;
+                lblSubmiDate3.Text = string.Empty;
+            }
+
+        }
+
+        private List<TaskItem> ReadTasksFromCsv(string csvFilePath)
+        {
+            List<TaskItem> tasks = new List<TaskItem>();
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    if (values.Length == 3)
+                    {
+                        string title = values[0];
+                        string description = values[1];
+                        DateTime deadline;
+
+                        if (DateTime.TryParse(values[2], out deadline))
+                        {
+                            tasks.Add(new TaskItem
+                            {
+                                Title = title,
+                                Description = description,
+                                Deadline = deadline
+                            });
+                        }
+                    }
+                }
+            }
+
+            return tasks;
+        }
+
+        private class TaskItem
+        {
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public DateTime Deadline { get; set; }
+        }
+
+        private void SubmiDate1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SubmiTask1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-      
+
 }

@@ -45,14 +45,14 @@
             label3 = new Label();
             pictureBox1 = new PictureBox();
             pnlCalendar = new Panel();
-            label15 = new Label();
-            label16 = new Label();
-            label17 = new Label();
-            label14 = new Label();
+            lblSubmiTask3 = new Label();
+            lblSubmiTask2 = new Label();
+            lblSubmiTask1 = new Label();
+            lblSubmiDate3 = new Label();
             label13 = new Label();
             label12 = new Label();
-            label11 = new Label();
-            label6 = new Label();
+            lblSubmiDate2 = new Label();
+            lblSubmiDate1 = new Label();
             label5 = new Label();
             pnlSat = new Panel();
             lblSatD = new Label();
@@ -115,18 +115,17 @@
             // cmbSY
             // 
             cmbSY.Font = new Font("Libre Franklin", 11.0999994F);
-            cmbSY.FormattingEnabled = true;
             cmbSY.Location = new Point(39, 58);
             cmbSY.Margin = new Padding(4);
             cmbSY.Name = "cmbSY";
             cmbSY.Size = new Size(242, 30);
             cmbSY.TabIndex = 0;
             cmbSY.Text = "2023-2024";
+            cmbSY.SelectedIndexChanged += Cmb_SelectedIndexChanged;
             // 
             // cmbSem
             // 
             cmbSem.Font = new Font("Libre Franklin", 11.0999994F);
-            cmbSem.FormattingEnabled = true;
             cmbSem.Items.AddRange(new object[] { "FIRST", "SECOND", "SUMMER" });
             cmbSem.Location = new Point(313, 58);
             cmbSem.Margin = new Padding(4);
@@ -134,6 +133,7 @@
             cmbSem.Size = new Size(248, 30);
             cmbSem.TabIndex = 1;
             cmbSem.Text = "FIRST";
+            cmbSem.SelectedIndexChanged += Cmb_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -316,14 +316,14 @@
             // 
             pnlCalendar.BackgroundImage = Properties.Resources.dbwhite_11;
             pnlCalendar.BackgroundImageLayout = ImageLayout.Zoom;
-            pnlCalendar.Controls.Add(label15);
-            pnlCalendar.Controls.Add(label16);
-            pnlCalendar.Controls.Add(label17);
-            pnlCalendar.Controls.Add(label14);
+            pnlCalendar.Controls.Add(lblSubmiTask3);
+            pnlCalendar.Controls.Add(lblSubmiTask2);
+            pnlCalendar.Controls.Add(lblSubmiTask1);
+            pnlCalendar.Controls.Add(lblSubmiDate3);
             pnlCalendar.Controls.Add(label13);
             pnlCalendar.Controls.Add(label12);
-            pnlCalendar.Controls.Add(label11);
-            pnlCalendar.Controls.Add(label6);
+            pnlCalendar.Controls.Add(lblSubmiDate2);
+            pnlCalendar.Controls.Add(lblSubmiDate1);
             pnlCalendar.Controls.Add(label5);
             pnlCalendar.Controls.Add(pnlSat);
             pnlCalendar.Controls.Add(pnlFri);
@@ -339,53 +339,54 @@
             pnlCalendar.Size = new Size(503, 449);
             pnlCalendar.TabIndex = 15;
             // 
-            // label15
+            // lblSubmiTask3
             // 
-            label15.AutoSize = true;
-            label15.BackColor = Color.Transparent;
-            label15.Font = new Font("Libre Franklin", 11.2499981F);
-            label15.ForeColor = Color.Black;
-            label15.Location = new Point(214, 366);
-            label15.Name = "label15";
-            label15.Size = new Size(98, 22);
-            label15.TabIndex = 23;
-            label15.Text = "SubmiTask2";
+            lblSubmiTask3.AutoSize = true;
+            lblSubmiTask3.BackColor = Color.Transparent;
+            lblSubmiTask3.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiTask3.ForeColor = Color.Black;
+            lblSubmiTask3.Location = new Point(214, 366);
+            lblSubmiTask3.Name = "lblSubmiTask3";
+            lblSubmiTask3.Size = new Size(99, 22);
+            lblSubmiTask3.TabIndex = 23;
+            lblSubmiTask3.Text = "SubmiTask3";
             // 
-            // label16
+            // lblSubmiTask2
             // 
-            label16.AutoSize = true;
-            label16.BackColor = Color.Transparent;
-            label16.Font = new Font("Libre Franklin", 11.2499981F);
-            label16.ForeColor = Color.Black;
-            label16.Location = new Point(214, 308);
-            label16.Name = "label16";
-            label16.Size = new Size(98, 22);
-            label16.TabIndex = 22;
-            label16.Text = "SubmiTask2";
+            lblSubmiTask2.AutoSize = true;
+            lblSubmiTask2.BackColor = Color.Transparent;
+            lblSubmiTask2.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiTask2.ForeColor = Color.Black;
+            lblSubmiTask2.Location = new Point(214, 308);
+            lblSubmiTask2.Name = "lblSubmiTask2";
+            lblSubmiTask2.Size = new Size(98, 22);
+            lblSubmiTask2.TabIndex = 22;
+            lblSubmiTask2.Text = "SubmiTask2";
             // 
-            // label17
+            // lblSubmiTask1
             // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.Transparent;
-            label17.Font = new Font("Libre Franklin", 11.2499981F);
-            label17.ForeColor = Color.Black;
-            label17.Location = new Point(214, 250);
-            label17.Name = "label17";
-            label17.Size = new Size(96, 22);
-            label17.TabIndex = 21;
-            label17.Text = "SubmiTask1";
+            lblSubmiTask1.AutoSize = true;
+            lblSubmiTask1.BackColor = Color.Transparent;
+            lblSubmiTask1.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiTask1.ForeColor = Color.Black;
+            lblSubmiTask1.Location = new Point(214, 250);
+            lblSubmiTask1.Name = "lblSubmiTask1";
+            lblSubmiTask1.Size = new Size(96, 22);
+            lblSubmiTask1.TabIndex = 21;
+            lblSubmiTask1.Text = "SubmiTask1";
+            lblSubmiTask1.Click += SubmiTask1_Click;
             // 
-            // label14
+            // lblSubmiDate3
             // 
-            label14.AutoSize = true;
-            label14.BackColor = Color.Transparent;
-            label14.Font = new Font("Libre Franklin", 11.2499981F);
-            label14.ForeColor = Color.Black;
-            label14.Location = new Point(45, 366);
-            label14.Name = "label14";
-            label14.Size = new Size(99, 22);
-            label14.TabIndex = 20;
-            label14.Text = "SubmiDate2";
+            lblSubmiDate3.AutoSize = true;
+            lblSubmiDate3.BackColor = Color.Transparent;
+            lblSubmiDate3.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiDate3.ForeColor = Color.Black;
+            lblSubmiDate3.Location = new Point(45, 366);
+            lblSubmiDate3.Name = "lblSubmiDate3";
+            lblSubmiDate3.Size = new Size(100, 22);
+            lblSubmiDate3.TabIndex = 20;
+            lblSubmiDate3.Text = "SubmiDate3";
             // 
             // label13
             // 
@@ -409,29 +410,30 @@
             label12.TabIndex = 18;
             label12.Text = "------------------------------------------------------------------";
             // 
-            // label11
+            // lblSubmiDate2
             // 
-            label11.AutoSize = true;
-            label11.BackColor = Color.Transparent;
-            label11.Font = new Font("Libre Franklin", 11.2499981F);
-            label11.ForeColor = Color.Black;
-            label11.Location = new Point(45, 308);
-            label11.Name = "label11";
-            label11.Size = new Size(99, 22);
-            label11.TabIndex = 17;
-            label11.Text = "SubmiDate2";
+            lblSubmiDate2.AutoSize = true;
+            lblSubmiDate2.BackColor = Color.Transparent;
+            lblSubmiDate2.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiDate2.ForeColor = Color.Black;
+            lblSubmiDate2.Location = new Point(45, 308);
+            lblSubmiDate2.Name = "lblSubmiDate2";
+            lblSubmiDate2.Size = new Size(99, 22);
+            lblSubmiDate2.TabIndex = 17;
+            lblSubmiDate2.Text = "SubmiDate2";
             // 
-            // label6
+            // lblSubmiDate1
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Libre Franklin", 11.2499981F);
-            label6.ForeColor = Color.Black;
-            label6.Location = new Point(45, 250);
-            label6.Name = "label6";
-            label6.Size = new Size(97, 22);
-            label6.TabIndex = 11;
-            label6.Text = "SubmiDate1";
+            lblSubmiDate1.AutoSize = true;
+            lblSubmiDate1.BackColor = Color.Transparent;
+            lblSubmiDate1.Font = new Font("Libre Franklin", 11.2499981F);
+            lblSubmiDate1.ForeColor = Color.Black;
+            lblSubmiDate1.Location = new Point(45, 250);
+            lblSubmiDate1.Name = "lblSubmiDate1";
+            lblSubmiDate1.Size = new Size(97, 22);
+            lblSubmiDate1.TabIndex = 11;
+            lblSubmiDate1.Text = "SubmiDate1";
+            lblSubmiDate1.Click += SubmiDate1_Click;
             // 
             // label5
             // 
@@ -784,7 +786,7 @@
             label18.ForeColor = Color.Gray;
             label18.Location = new Point(17, 25);
             label18.Name = "label18";
-            label18.Size = new Size(112, 22);
+            label18.Size = new Size(111, 22);
             label18.TabIndex = 29;
             label18.Text = "Total Subjects";
             // 
@@ -832,7 +834,7 @@
             label22.ForeColor = Color.Gray;
             label22.Location = new Point(18, 25);
             label22.Name = "label22";
-            label22.Size = new Size(112, 22);
+            label22.Size = new Size(111, 22);
             label22.TabIndex = 30;
             label22.Text = "Total Sections";
             // 
@@ -880,7 +882,7 @@
             label24.ForeColor = Color.Gray;
             label24.Location = new Point(22, 25);
             label24.Name = "label24";
-            label24.Size = new Size(115, 22);
+            label24.Size = new Size(114, 22);
             label24.TabIndex = 31;
             label24.Text = "Total Students";
             // 
@@ -981,7 +983,7 @@
         private Label lblEmail;
         private Label lblSemester;
         private Panel pnlCalendar;
-        private Label label11;
+        private Label lblSubmiDate2;
         private Label lblSun;
         private Label label19;
         private PictureBox pictureBox2;
@@ -1007,12 +1009,12 @@
         private Label lblMon;
         private Label label5;
         private Label label12;
-        private Label label6;
+        private Label lblSubmiDate1;
         private Label label13;
-        private Label label14;
-        private Label label15;
-        private Label label16;
-        private Label label17;
+        private Label lblSubmiDate3;
+        private Label lblSubmiTask3;
+        private Label lblSubmiTask2;
+        private Label lblSubmiTask1;
         private Panel panel1;
         private Label lblGreet;
         private Label lblGreetTwo;
