@@ -223,67 +223,7 @@ namespace Pedagohiya
                 checkedListBoxStudent.Items.Clear();
                 markButton.Visible = false;
                 checkedListBoxStudent.Visible = false;
-                tabControl3.SelectedTab = Viewing;
             }
-        }
-
-        private void LoadAttendanceTable()
-        {
-            string selectedYear = SchoolYearComboBox.SelectedItem?.ToString();
-            string selectedSemester = SemesterComboBox.SelectedItem?.ToString();
-            string selectedSubject = comboBoxSubject.SelectedItem?.ToString();
-            string sectionName = comboBoxSection.SelectedItem?.ToString();
-            string CSV = Path.Combine(basePath, username, selectedYear, selectedSemester, selectedSubject, sectionName, sectionName + "_attendanceList.csv");
-            string[] attendanceString = File.ReadAllLines(CSV);
-
-            // Check if the submissions CSV file exists
-            if (File.Exists(CSV))
-            {
-                // Load data from the CSV file into the DataTable
-                DataTable dataTable = new DataTable();
-                using (var reader = new StreamReader(CSV))
-                {
-                    string line = reader.ReadLine();
-                    if (!string.IsNullOrEmpty(line))
-                    {
-                        string[] headers = line.Split(',');
-                        foreach (string header in headers)
-                        {
-                            if (header == "attendance") return;
-                            dataTable.Columns.Add(header);
-                        }
-
-                        while ((line = reader.ReadLine()) != null)
-                        {
-                            string[] values = line.Split(',');
-                            dataTable.Rows.Add(values);
-                        }
-                    }
-                }
-
-                dgvAttendance.DataSource = dataTable;
-                dgvAttendance.DefaultCellStyle.Font = new Font("Libre Franklin", 18);
-                dgvAttendance.ColumnHeadersDefaultCellStyle.Font = new Font("Libre Franklin", 18);
-                dgvAttendance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-                dgvAttendance.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-
-                dgvAttendance.Visible = true;
-            }
-            else
-            {
-                dgvAttendance.Visible = false;
-            }
-        }
-
-        private void Viewing_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControl3_Click(object sender, EventArgs e)
-        {
-            LoadAttendanceTable();
         }
     }
 }

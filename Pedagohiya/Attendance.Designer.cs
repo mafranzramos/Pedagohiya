@@ -103,7 +103,6 @@
             tabControl3.Size = new Size(1229, 718);
             tabControl3.SizeMode = TabSizeMode.Fixed;
             tabControl3.TabIndex = 22;
-            tabControl3.Click += tabControl3_Click;
             // 
             // Marking
             // 
