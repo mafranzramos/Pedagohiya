@@ -29,7 +29,9 @@ namespace Pedagohiya
         {
             InitializeComponent();
             StudentPanel = new Students(username);
+            AttendancePanel = new Attendance(username);
             mainContainer.Controls.Add(StudentPanel);
+            mainContainer.Controls.Add(AttendancePanel);
             lblUsername.Text = "Hello, " + username + "!";
             waveOut = new WaveOut();
             DockFull();

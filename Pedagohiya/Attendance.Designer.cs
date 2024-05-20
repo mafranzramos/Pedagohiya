@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             label2 = new Label();
-            btnDeleteTextTextBox = new Button();
             comboBoxSection = new ComboBox();
             comboBoxSubject = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             tabControl3 = new TabControl();
-            tabPage6 = new TabPage();
-            tabPage5 = new TabPage();
-            tabPage4 = new TabPage();
-            button1 = new Button();
+            Marking = new TabPage();
+            markButton = new Button();
+            SemesterComboBox = new ComboBox();
+            checkedListBoxStudent = new CheckedListBox();
+            SchoolYearComboBox = new ComboBox();
+            Viewing = new TabPage();
             tabControl3.SuspendLayout();
-            tabPage6.SuspendLayout();
-            tabPage4.SuspendLayout();
+            Marking.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -54,35 +54,16 @@
             label2.TabIndex = 8;
             label2.Text = "ATTENDANCE";
             // 
-            // btnDeleteTextTextBox
-            // 
-            btnDeleteTextTextBox.BackColor = Color.White;
-            btnDeleteTextTextBox.BackgroundImageLayout = ImageLayout.None;
-            btnDeleteTextTextBox.FlatAppearance.BorderColor = Color.Black;
-            btnDeleteTextTextBox.FlatAppearance.BorderSize = 3;
-            btnDeleteTextTextBox.FlatStyle = FlatStyle.Flat;
-            btnDeleteTextTextBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDeleteTextTextBox.Image = Properties.Resources.upHere6;
-            btnDeleteTextTextBox.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDeleteTextTextBox.Location = new Point(43, 543);
-            btnDeleteTextTextBox.Margin = new Padding(10);
-            btnDeleteTextTextBox.Name = "btnDeleteTextTextBox";
-            btnDeleteTextTextBox.Padding = new Padding(16, 0, 0, 0);
-            btnDeleteTextTextBox.Size = new Size(233, 54);
-            btnDeleteTextTextBox.TabIndex = 18;
-            btnDeleteTextTextBox.Text = "        Delete the Text";
-            btnDeleteTextTextBox.TextAlign = ContentAlignment.MiddleLeft;
-            btnDeleteTextTextBox.UseVisualStyleBackColor = false;
-            // 
             // comboBoxSection
             // 
             comboBoxSection.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBoxSection.FormattingEnabled = true;
-            comboBoxSection.Location = new Point(499, 21);
+            comboBoxSection.Location = new Point(727, 29);
             comboBoxSection.Name = "comboBoxSection";
-            comboBoxSection.Size = new Size(238, 38);
+            comboBoxSection.Size = new Size(200, 38);
             comboBoxSection.TabIndex = 20;
             comboBoxSection.Text = "SECTION:";
+            comboBoxSection.SelectedIndexChanged += comboBoxSection_SelectedIndexChanged;
             // 
             // comboBoxSubject
             // 
@@ -90,9 +71,9 @@
             comboBoxSubject.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBoxSubject.FormattingEnabled = true;
             comboBoxSubject.ImeMode = ImeMode.NoControl;
-            comboBoxSubject.Location = new Point(20, 21);
+            comboBoxSubject.Location = new Point(506, 29);
             comboBoxSubject.Name = "comboBoxSubject";
-            comboBoxSubject.Size = new Size(455, 38);
+            comboBoxSubject.Size = new Size(200, 38);
             comboBoxSubject.TabIndex = 19;
             comboBoxSubject.Text = "SUBJECT";
             comboBoxSubject.SelectedIndexChanged += comboBoxSubject_SelectedIndexChanged;
@@ -100,17 +81,17 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold);
-            dateTimePicker1.Location = new Point(782, 21);
+            dateTimePicker1.Location = new Point(26, 99);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(387, 36);
             dateTimePicker1.TabIndex = 21;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // tabControl3
             // 
             tabControl3.Appearance = TabAppearance.FlatButtons;
-            tabControl3.Controls.Add(tabPage6);
-            tabControl3.Controls.Add(tabPage5);
-            tabControl3.Controls.Add(tabPage4);
+            tabControl3.Controls.Add(Marking);
+            tabControl3.Controls.Add(Viewing);
             tabControl3.Cursor = Cursors.Hand;
             tabControl3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tabControl3.ItemSize = new Size(260, 50);
@@ -125,73 +106,94 @@
             tabControl3.SizeMode = TabSizeMode.Fixed;
             tabControl3.TabIndex = 22;
             // 
-            // tabPage6
+            // Marking
             // 
-            tabPage6.BackColor = Color.White;
-            tabPage6.Controls.Add(btnDeleteTextTextBox);
-            tabPage6.Controls.Add(dateTimePicker1);
-            tabPage6.Controls.Add(comboBoxSubject);
-            tabPage6.Controls.Add(comboBoxSection);
-            tabPage6.Location = new Point(4, 54);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1221, 660);
-            tabPage6.TabIndex = 2;
-            tabPage6.Text = "Mark Attendance";
+            Marking.BackColor = Color.FromArgb(67, 101, 208);
+            Marking.Controls.Add(markButton);
+            Marking.Controls.Add(SemesterComboBox);
+            Marking.Controls.Add(checkedListBoxStudent);
+            Marking.Controls.Add(SchoolYearComboBox);
+            Marking.Controls.Add(dateTimePicker1);
+            Marking.Controls.Add(comboBoxSubject);
+            Marking.Controls.Add(comboBoxSection);
+            Marking.Location = new Point(4, 54);
+            Marking.Name = "Marking";
+            Marking.Size = new Size(1221, 660);
+            Marking.TabIndex = 2;
+            Marking.Text = "Mark Attendance";
             // 
-            // tabPage5
+            // markButton
             // 
-            tabPage5.BackColor = Color.White;
-            tabPage5.Location = new Point(4, 54);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1221, 660);
-            tabPage5.TabIndex = 1;
-            tabPage5.Text = "View Attendance";
+            markButton.Location = new Point(26, 587);
+            markButton.Name = "markButton";
+            markButton.Size = new Size(620, 46);
+            markButton.TabIndex = 24;
+            markButton.Text = "Mark";
+            markButton.UseVisualStyleBackColor = true;
+            markButton.Visible = false;
+            markButton.Click += markButton_Click;
             // 
-            // tabPage4
+            // SemesterComboBox
             // 
-            tabPage4.BackColor = Color.White;
-            tabPage4.Controls.Add(button1);
-            tabPage4.ForeColor = Color.Black;
-            tabPage4.Location = new Point(4, 54);
-            tabPage4.Margin = new Padding(7);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1221, 660);
-            tabPage4.TabIndex = 0;
-            tabPage4.Text = "Attendance Reports?";
+            SemesterComboBox.BackColor = SystemColors.Window;
+            SemesterComboBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SemesterComboBox.FormattingEnabled = true;
+            SemesterComboBox.ImeMode = ImeMode.NoControl;
+            SemesterComboBox.Items.AddRange(new object[] { "FIRST", "SECOND", "SUMMER" });
+            SemesterComboBox.Location = new Point(256, 29);
+            SemesterComboBox.Name = "SemesterComboBox";
+            SemesterComboBox.Size = new Size(200, 38);
+            SemesterComboBox.TabIndex = 23;
+            SemesterComboBox.Text = "Semester:";
+            SemesterComboBox.SelectedIndexChanged += YearSemComboBox_SelectedIndexChanged;
             // 
-            // button1
+            // checkedListBoxStudent
             // 
-            button1.BackColor = Color.White;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.FlatAppearance.BorderColor = Color.Black;
-            button1.FlatAppearance.BorderSize = 3;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Image = Properties.Resources.upHere6;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(18, 576);
-            button1.Margin = new Padding(10);
-            button1.Name = "button1";
-            button1.Padding = new Padding(16, 0, 0, 0);
-            button1.Size = new Size(233, 54);
-            button1.TabIndex = 17;
-            button1.Text = "        Delete the Text";
-            button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.UseVisualStyleBackColor = false;
+            checkedListBoxStudent.CheckOnClick = true;
+            checkedListBoxStudent.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            checkedListBoxStudent.FormattingEnabled = true;
+            checkedListBoxStudent.IntegralHeight = false;
+            checkedListBoxStudent.Location = new Point(26, 165);
+            checkedListBoxStudent.Name = "checkedListBoxStudent";
+            checkedListBoxStudent.Size = new Size(620, 396);
+            checkedListBoxStudent.TabIndex = 22;
+            checkedListBoxStudent.Visible = false;
+            // 
+            // SchoolYearComboBox
+            // 
+            SchoolYearComboBox.BackColor = SystemColors.Window;
+            SchoolYearComboBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SchoolYearComboBox.FormattingEnabled = true;
+            SchoolYearComboBox.ImeMode = ImeMode.NoControl;
+            SchoolYearComboBox.Location = new Point(26, 29);
+            SchoolYearComboBox.Name = "SchoolYearComboBox";
+            SchoolYearComboBox.Size = new Size(200, 38);
+            SchoolYearComboBox.TabIndex = 22;
+            SchoolYearComboBox.Text = "School Year:";
+            SchoolYearComboBox.SelectedIndexChanged += YearSemComboBox_SelectedIndexChanged;
+            // 
+            // Viewing
+            // 
+            Viewing.BackColor = Color.FromArgb(67, 101, 208);
+            Viewing.Location = new Point(4, 54);
+            Viewing.Name = "Viewing";
+            Viewing.Padding = new Padding(3);
+            Viewing.Size = new Size(1221, 660);
+            Viewing.TabIndex = 1;
+            Viewing.Text = "View Attendance";
             // 
             // Attendance
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(223, 227, 242);
             Controls.Add(tabControl3);
             Controls.Add(label2);
             Name = "Attendance";
             Size = new Size(1284, 804);
+            Load += Attendance_Load;
             tabControl3.ResumeLayout(false);
-            tabPage6.ResumeLayout(false);
-            tabPage4.ResumeLayout(false);
+            Marking.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -199,14 +201,15 @@
         #endregion
 
         private Label label2;
-        private Button btnDeleteTextTextBox;
         private ComboBox comboBoxSection;
         private ComboBox comboBoxSubject;
         private DateTimePicker dateTimePicker1;
         private TabControl tabControl3;
-        private TabPage tabPage6;
-        private TabPage tabPage5;
-        private TabPage tabPage4;
-        private Button button1;
+        private TabPage Marking;
+        private TabPage Viewing;
+        private ComboBox SchoolYearComboBox;
+        private ComboBox SemesterComboBox;
+        private CheckedListBox checkedListBoxStudent;
+        private Button markButton;
     }
 }

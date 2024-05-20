@@ -3,6 +3,9 @@
 Pedagohiya/bin/*
 Pedagohiya/bin/Debug/*
 Pedagohiya/bin/Debug/net8.0-windows8.0/*
+Pedagohiya/bin/Debug/net8.0-windows8.0/Pedagohiya.dll
+Pedagohiya/bin/Debug/net8.0-windows8.0/Pedagohiya.exe
+Pedagohiya/bin/Debug/net8.0-windows8.0/Pedagohiya.pdb
 Pedagohiya/obj
 
 # folders to keep
