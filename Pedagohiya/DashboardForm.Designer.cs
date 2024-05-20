@@ -43,7 +43,6 @@ namespace Pedagohiya
             magic8ball = new Panel();
             MagicLabel = new Label();
             pictureBox1 = new PictureBox();
-            btnSubmission = new Button();
             btnClassManagement = new Button();
             btnSettings = new Button();
             panel2 = new Panel();
@@ -65,15 +64,14 @@ namespace Pedagohiya
             button28 = new Button();
             label9 = new Label();
             panel3 = new Panel();
-            AttendancePanel = new Attendance();
             checkedListBox1 = new CheckedListBox();
+            AttendancePanel = new Attendance();
             tableLayoutPanel2 = new TableLayoutPanel();
             label6 = new Label();
             mainContainer = new Panel();
-            taskPanel = new Task();
-            StudentPanel = new Students();
             SettingsPanel = new Settings();
             dashboard1 = new Dashboard();
+            taskPanel = new Task();
             DashboardPanel = new Panel();
             panel5 = new Panel();
             btnMinimize = new Button();
@@ -99,9 +97,10 @@ namespace Pedagohiya
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(45, 70, 76);
-            label5.Location = new Point(12, 9);
+            label5.Location = new Point(22, 19);
+            label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
-            label5.Size = new Size(0, 30);
+            label5.Size = new Size(0, 57);
             label5.TabIndex = 1;
             // 
             // label1
@@ -109,9 +108,10 @@ namespace Pedagohiya
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(14, 12);
+            label1.Location = new Point(26, 26);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(175, 32);
+            label1.Size = new Size(352, 65);
             label1.TabIndex = 2;
             label1.Text = "PEDAGOHIYA";
             label1.Click += label1_Click;
@@ -125,16 +125,15 @@ namespace Pedagohiya
             flowLayoutPanel1.Controls.Add(btnAttendance);
             flowLayoutPanel1.Controls.Add(btnTasks);
             flowLayoutPanel1.Controls.Add(magic8ball);
-            flowLayoutPanel1.Controls.Add(btnSubmission);
             flowLayoutPanel1.Controls.Add(btnClassManagement);
             flowLayoutPanel1.Controls.Add(btnSettings);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(10);
+            flowLayoutPanel1.Margin = new Padding(19, 21, 19, 21);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(15);
-            flowLayoutPanel1.Size = new Size(254, 884);
+            flowLayoutPanel1.Padding = new Padding(28, 32, 28, 32);
+            flowLayoutPanel1.Size = new Size(472, 1758);
             flowLayoutPanel1.TabIndex = 5;
             // 
             // lblUsername
@@ -142,10 +141,11 @@ namespace Pedagohiya
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.Black;
-            lblUsername.Location = new Point(18, 15);
+            lblUsername.Location = new Point(34, 32);
+            lblUsername.Margin = new Padding(6, 0, 6, 0);
             lblUsername.Name = "lblUsername";
             lblUsername.RightToLeft = RightToLeft.No;
-            lblUsername.Size = new Size(174, 25);
+            lblUsername.Size = new Size(349, 51);
             lblUsername.TabIndex = 3;
             lblUsername.Text = "Pick a profile first!";
             lblUsername.TextAlign = ContentAlignment.MiddleCenter;
@@ -162,11 +162,11 @@ namespace Pedagohiya
             btnDashboard.ForeColor = Color.Black;
             btnDashboard.Image = Properties.Resources.dashboard;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(25, 50);
-            btnDashboard.Margin = new Padding(10);
+            btnDashboard.Location = new Point(47, 104);
+            btnDashboard.Margin = new Padding(19, 21, 19, 21);
             btnDashboard.Name = "btnDashboard";
-            btnDashboard.Padding = new Padding(16, 0, 0, 0);
-            btnDashboard.Size = new Size(201, 54);
+            btnDashboard.Padding = new Padding(30, 0, 0, 0);
+            btnDashboard.Size = new Size(373, 115);
             btnDashboard.TabIndex = 6;
             btnDashboard.Text = "        Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
@@ -177,9 +177,10 @@ namespace Pedagohiya
             // 
             duck_Pic.BackgroundImageLayout = ImageLayout.None;
             duck_Pic.Image = Properties.Resources.XOsX;
-            duck_Pic.Location = new Point(18, 117);
+            duck_Pic.Location = new Point(34, 246);
+            duck_Pic.Margin = new Padding(6, 6, 6, 6);
             duck_Pic.Name = "duck_Pic";
-            duck_Pic.Size = new Size(208, 100);
+            duck_Pic.Size = new Size(386, 213);
             duck_Pic.SizeMode = PictureBoxSizeMode.Zoom;
             duck_Pic.TabIndex = 11;
             duck_Pic.TabStop = false;
@@ -196,11 +197,11 @@ namespace Pedagohiya
             btnAttendance.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAttendance.Image = Properties.Resources.itask;
             btnAttendance.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAttendance.Location = new Point(25, 230);
-            btnAttendance.Margin = new Padding(10);
+            btnAttendance.Location = new Point(47, 486);
+            btnAttendance.Margin = new Padding(19, 21, 19, 21);
             btnAttendance.Name = "btnAttendance";
-            btnAttendance.Padding = new Padding(16, 0, 0, 0);
-            btnAttendance.Size = new Size(201, 54);
+            btnAttendance.Padding = new Padding(30, 0, 0, 0);
+            btnAttendance.Size = new Size(373, 115);
             btnAttendance.TabIndex = 9;
             btnAttendance.Text = "        Attendance";
             btnAttendance.TextAlign = ContentAlignment.MiddleLeft;
@@ -217,11 +218,11 @@ namespace Pedagohiya
             btnTasks.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnTasks.Image = Properties.Resources.icons8_high_priority_26;
             btnTasks.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTasks.Location = new Point(25, 304);
-            btnTasks.Margin = new Padding(10);
+            btnTasks.Location = new Point(47, 643);
+            btnTasks.Margin = new Padding(19, 21, 19, 21);
             btnTasks.Name = "btnTasks";
-            btnTasks.Padding = new Padding(16, 0, 0, 0);
-            btnTasks.Size = new Size(201, 54);
+            btnTasks.Padding = new Padding(30, 0, 0, 0);
+            btnTasks.Size = new Size(373, 115);
             btnTasks.TabIndex = 7;
             btnTasks.Text = "        Tasks";
             btnTasks.TextAlign = ContentAlignment.MiddleLeft;
@@ -232,9 +233,10 @@ namespace Pedagohiya
             // 
             magic8ball.Controls.Add(MagicLabel);
             magic8ball.Controls.Add(pictureBox1);
-            magic8ball.Location = new Point(18, 371);
+            magic8ball.Location = new Point(34, 785);
+            magic8ball.Margin = new Padding(6, 6, 6, 6);
             magic8ball.Name = "magic8ball";
-            magic8ball.Size = new Size(208, 116);
+            magic8ball.Size = new Size(386, 247);
             magic8ball.TabIndex = 15;
             magic8ball.Visible = false;
             // 
@@ -242,9 +244,10 @@ namespace Pedagohiya
             // 
             MagicLabel.AutoSize = true;
             MagicLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            MagicLabel.Location = new Point(3, 97);
+            MagicLabel.Location = new Point(6, 207);
+            MagicLabel.Margin = new Padding(6, 0, 6, 0);
             MagicLabel.Name = "MagicLabel";
-            MagicLabel.Size = new Size(60, 20);
+            MagicLabel.Size = new Size(119, 41);
             MagicLabel.TabIndex = 13;
             MagicLabel.Text = "Hmm...";
             MagicLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -252,33 +255,14 @@ namespace Pedagohiya
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.billiard;
-            pictureBox1.Location = new Point(61, 0);
+            pictureBox1.Location = new Point(113, 0);
+            pictureBox1.Margin = new Padding(6, 6, 6, 6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(88, 94);
+            pictureBox1.Size = new Size(163, 201);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             pictureBox1.Click += magic_Click;
-            // 
-            // btnSubmission
-            // 
-            btnSubmission.BackColor = Color.White;
-            btnSubmission.BackgroundImageLayout = ImageLayout.None;
-            btnSubmission.FlatAppearance.BorderColor = Color.Black;
-            btnSubmission.FlatAppearance.BorderSize = 3;
-            btnSubmission.FlatStyle = FlatStyle.Flat;
-            btnSubmission.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSubmission.Image = Properties.Resources.submit;
-            btnSubmission.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSubmission.Location = new Point(25, 500);
-            btnSubmission.Margin = new Padding(10);
-            btnSubmission.Name = "btnSubmission";
-            btnSubmission.Padding = new Padding(16, 0, 0, 0);
-            btnSubmission.Size = new Size(201, 54);
-            btnSubmission.TabIndex = 8;
-            btnSubmission.Text = "        Submission";
-            btnSubmission.TextAlign = ContentAlignment.MiddleLeft;
-            btnSubmission.UseVisualStyleBackColor = false;
             // 
             // btnClassManagement
             // 
@@ -290,11 +274,11 @@ namespace Pedagohiya
             btnClassManagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClassManagement.Image = Properties.Resources.student;
             btnClassManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClassManagement.Location = new Point(25, 574);
-            btnClassManagement.Margin = new Padding(10);
+            btnClassManagement.Location = new Point(47, 1059);
+            btnClassManagement.Margin = new Padding(19, 21, 19, 21);
             btnClassManagement.Name = "btnClassManagement";
-            btnClassManagement.Padding = new Padding(16, 0, 0, 0);
-            btnClassManagement.Size = new Size(201, 65);
+            btnClassManagement.Padding = new Padding(30, 0, 0, 0);
+            btnClassManagement.Size = new Size(373, 139);
             btnClassManagement.TabIndex = 7;
             btnClassManagement.Text = "         Class Management";
             btnClassManagement.TextAlign = ContentAlignment.MiddleLeft;
@@ -311,11 +295,11 @@ namespace Pedagohiya
             btnSettings.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSettings.Image = Properties.Resources.settings;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.Location = new Point(25, 659);
-            btnSettings.Margin = new Padding(10);
+            btnSettings.Location = new Point(47, 1240);
+            btnSettings.Margin = new Padding(19, 21, 19, 21);
             btnSettings.Name = "btnSettings";
-            btnSettings.Padding = new Padding(16, 0, 0, 0);
-            btnSettings.Size = new Size(201, 54);
+            btnSettings.Padding = new Padding(30, 0, 0, 0);
+            btnSettings.Size = new Size(373, 115);
             btnSettings.TabIndex = 10;
             btnSettings.Text = "        Settings";
             btnSettings.TextAlign = ContentAlignment.MiddleLeft;
@@ -408,7 +392,7 @@ namespace Pedagohiya
             label3.ForeColor = Color.Black;
             label3.Location = new Point(17, 11);
             label3.Name = "label3";
-            label3.Size = new Size(188, 45);
+            label3.Size = new Size(376, 86);
             label3.TabIndex = 5;
             label3.Text = "STUDENTS";
             // 
@@ -539,7 +523,7 @@ namespace Pedagohiya
             label8.ForeColor = Color.Black;
             label8.Location = new Point(17, 11);
             label8.Name = "label8";
-            label8.Size = new Size(188, 45);
+            label8.Size = new Size(376, 86);
             label8.TabIndex = 5;
             label8.Text = "STUDENTS";
             // 
@@ -604,6 +588,16 @@ namespace Pedagohiya
             checkedListBox1.Size = new Size(238, 196);
             checkedListBox1.TabIndex = 2;
             // 
+            // AttendancePanel
+            // 
+            AttendancePanel.Dock = DockStyle.Top;
+            AttendancePanel.Location = new Point(0, 186);
+            AttendancePanel.Margin = new Padding(3, 4, 3, 4);
+            AttendancePanel.Name = "AttendancePanel";
+            AttendancePanel.Size = new Size(1273, 137);
+            AttendancePanel.TabIndex = 4;
+            AttendancePanel.Visible = false;
+            // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
@@ -630,44 +624,16 @@ namespace Pedagohiya
             // mainContainer
             // 
             mainContainer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            mainContainer.Controls.Add(StudentPanel);
             mainContainer.Controls.Add(SettingsPanel);
             mainContainer.Controls.Add(dashboard1);
             mainContainer.Controls.Add(taskPanel);
             mainContainer.Dock = DockStyle.Left;
             mainContainer.ImeMode = ImeMode.Disable;
-            mainContainer.Location = new Point(254, 62);
-            mainContainer.Margin = new Padding(3, 2, 3, 2);
+            mainContainer.Location = new Point(472, 132);
+            mainContainer.Margin = new Padding(6, 4, 6, 4);
             mainContainer.Name = "mainContainer";
-            mainContainer.Size = new Size(1273, 822);
+            mainContainer.Size = new Size(2364, 1626);
             mainContainer.TabIndex = 6;
-            // 
-            // taskPanel
-            // 
-            taskPanel.Location = new Point(0, 379);
-            taskPanel.Name = "taskPanel";
-            taskPanel.Size = new Size(1290, 83);
-            taskPanel.TabIndex = 8;
-            // 
-            // StudentPanel
-            // 
-            StudentPanel.BackColor = Color.White;
-            StudentPanel.Dock = DockStyle.Top;
-            StudentPanel.Location = new Point(0, 323);
-            StudentPanel.Name = "StudentPanel";
-            StudentPanel.Size = new Size(1273, 51);
-            StudentPanel.TabIndex = 7;
-            StudentPanel.Visible = false;
-            // 
-            // AttendancePanel
-            // 
-            AttendancePanel.Dock = DockStyle.Top;
-            AttendancePanel.Location = new Point(0, 186);
-            AttendancePanel.Margin = new Padding(3, 4, 3, 4);
-            AttendancePanel.Name = "AttendancePanel";
-            AttendancePanel.Size = new Size(1273, 137);
-            AttendancePanel.TabIndex = 4;
-            AttendancePanel.Visible = false;
             // 
             // SettingsPanel
             // 
@@ -675,10 +641,10 @@ namespace Pedagohiya
             SettingsPanel.BackColor = Color.White;
             SettingsPanel.DashboardForm = null;
             SettingsPanel.Dock = DockStyle.Top;
-            SettingsPanel.Location = new Point(0, 77);
-            SettingsPanel.Margin = new Padding(3, 4, 3, 4);
+            SettingsPanel.Location = new Point(0, 164);
+            SettingsPanel.Margin = new Padding(6, 9, 6, 9);
             SettingsPanel.Name = "SettingsPanel";
-            SettingsPanel.Size = new Size(1273, 109);
+            SettingsPanel.Size = new Size(2364, 233);
             SettingsPanel.TabIndex = 2;
             SettingsPanel.Visible = false;
             // 
@@ -689,10 +655,20 @@ namespace Pedagohiya
             dashboard1.Dock = DockStyle.Top;
             dashboard1.Font = new Font("Libre Franklin", 11.0999994F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dashboard1.Location = new Point(0, 0);
-            dashboard1.Margin = new Padding(3, 4, 3, 4);
+            dashboard1.Margin = new Padding(6, 9, 6, 9);
             dashboard1.Name = "dashboard1";
-            dashboard1.Size = new Size(1273, 77);
+            dashboard1.Size = new Size(2364, 164);
             dashboard1.TabIndex = 1;
+            // 
+            // taskPanel
+            // 
+            taskPanel.BackColor = Color.FromArgb(223, 227, 242);
+            taskPanel.Font = new Font("Libre Franklin", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            taskPanel.Location = new Point(0, 809);
+            taskPanel.Margin = new Padding(11, 13, 11, 13);
+            taskPanel.Name = "taskPanel";
+            taskPanel.Size = new Size(2396, 177);
+            taskPanel.TabIndex = 8;
             // 
             // DashboardPanel
             // 
@@ -701,8 +677,9 @@ namespace Pedagohiya
             DashboardPanel.Controls.Add(flowLayoutPanel1);
             DashboardPanel.Dock = DockStyle.Fill;
             DashboardPanel.Location = new Point(0, 0);
+            DashboardPanel.Margin = new Padding(6, 6, 6, 6);
             DashboardPanel.Name = "DashboardPanel";
-            DashboardPanel.Size = new Size(1527, 884);
+            DashboardPanel.Size = new Size(2836, 1758);
             DashboardPanel.TabIndex = 18;
             // 
             // panel5
@@ -712,9 +689,10 @@ namespace Pedagohiya
             panel5.Controls.Add(btnClose);
             panel5.Controls.Add(label1);
             panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(254, 0);
+            panel5.Location = new Point(472, 0);
+            panel5.Margin = new Padding(6, 6, 6, 6);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1273, 62);
+            panel5.Size = new Size(2364, 132);
             panel5.TabIndex = 19;
             // 
             // btnMinimize
@@ -728,10 +706,10 @@ namespace Pedagohiya
             btnMinimize.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnMinimize.Image = Properties.Resources.minimize;
             btnMinimize.ImageAlign = ContentAlignment.TopCenter;
-            btnMinimize.Location = new Point(1186, 7);
-            btnMinimize.Margin = new Padding(10);
+            btnMinimize.Location = new Point(2203, 15);
+            btnMinimize.Margin = new Padding(19, 21, 19, 21);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(38, 38);
+            btnMinimize.Size = new Size(71, 81);
             btnMinimize.TabIndex = 16;
             btnMinimize.TextAlign = ContentAlignment.MiddleLeft;
             btnMinimize.UseVisualStyleBackColor = false;
@@ -747,10 +725,10 @@ namespace Pedagohiya
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.Image = Properties.Resources.quit_white;
-            btnClose.Location = new Point(1227, 7);
-            btnClose.Margin = new Padding(10);
+            btnClose.Location = new Point(2279, 15);
+            btnClose.Margin = new Padding(19, 21, 19, 21);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(38, 38);
+            btnClose.Size = new Size(71, 81);
             btnClose.TabIndex = 15;
             btnClose.TextAlign = ContentAlignment.MiddleLeft;
             btnClose.UseVisualStyleBackColor = false;
@@ -758,15 +736,15 @@ namespace Pedagohiya
             // 
             // DashboardForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
-            ClientSize = new Size(1527, 884);
+            ClientSize = new Size(2836, 1758);
             ControlBox = false;
             Controls.Add(DashboardPanel);
             Controls.Add(label5);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(6, 4, 6, 4);
             Name = "DashboardForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PEDAGOHIYA";
@@ -802,7 +780,6 @@ namespace Pedagohiya
         private Button btnDashboard;
         private Button btnClassManagement;
         private Button btnTasks;
-        private Button btnSubmission;
         private Button btnAttendance;
         private Button btnSettings;
         private Panel panel2;
