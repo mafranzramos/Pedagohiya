@@ -263,6 +263,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(223, 227, 242);
             Controls.Add(tableLayoutPanel1);
             Name = "Profile";
             Size = new Size(1279, 856);

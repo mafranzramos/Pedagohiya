@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Pedagohiya
 {
-    public partial class Submission : UserControl
+    public partial class EditTask_Popup : UserControl
     {
-        public Submission()
+        public EditTask_Popup()
         {
             InitializeComponent();
         }

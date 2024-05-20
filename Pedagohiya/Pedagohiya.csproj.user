@@ -22,10 +22,13 @@
     <Compile Update="Students.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Submission.cs">
+    <Compile Update="AddTask_Popup.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Task.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="EditTask_Popup.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

@@ -65,12 +65,13 @@ namespace Pedagohiya
             button28 = new Button();
             label9 = new Label();
             panel3 = new Panel();
+            AttendancePanel = new Attendance();
             checkedListBox1 = new CheckedListBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             label6 = new Label();
             mainContainer = new Panel();
+            taskPanel = new Task();
             StudentPanel = new Students();
-            AttendancePanel = new Attendance();
             SettingsPanel = new Settings();
             dashboard1 = new Dashboard();
             DashboardPanel = new Panel();
@@ -225,6 +226,7 @@ namespace Pedagohiya
             btnTasks.Text = "        Tasks";
             btnTasks.TextAlign = ContentAlignment.MiddleLeft;
             btnTasks.UseVisualStyleBackColor = false;
+            btnTasks.Click += btnTask_click;
             // 
             // magic8ball
             // 
@@ -629,9 +631,9 @@ namespace Pedagohiya
             // 
             mainContainer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             mainContainer.Controls.Add(StudentPanel);
-            mainContainer.Controls.Add(AttendancePanel);
             mainContainer.Controls.Add(SettingsPanel);
             mainContainer.Controls.Add(dashboard1);
+            mainContainer.Controls.Add(taskPanel);
             mainContainer.Dock = DockStyle.Left;
             mainContainer.ImeMode = ImeMode.Disable;
             mainContainer.Location = new Point(254, 62);
@@ -639,6 +641,13 @@ namespace Pedagohiya
             mainContainer.Name = "mainContainer";
             mainContainer.Size = new Size(1273, 822);
             mainContainer.TabIndex = 6;
+            // 
+            // taskPanel
+            // 
+            taskPanel.Location = new Point(0, 379);
+            taskPanel.Name = "taskPanel";
+            taskPanel.Size = new Size(1290, 83);
+            taskPanel.TabIndex = 8;
             // 
             // StudentPanel
             // 
@@ -675,7 +684,10 @@ namespace Pedagohiya
             // 
             // dashboard1
             // 
+            dashboard1.BackColor = Color.FromArgb(223, 227, 242);
+            dashboard1.BackgroundImageLayout = ImageLayout.Zoom;
             dashboard1.Dock = DockStyle.Top;
+            dashboard1.Font = new Font("Libre Franklin", 11.0999994F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dashboard1.Location = new Point(0, 0);
             dashboard1.Margin = new Padding(3, 4, 3, 4);
             dashboard1.Name = "dashboard1";
@@ -829,5 +841,6 @@ namespace Pedagohiya
         private PictureBox pictureBox1;
         private Label MagicLabel;
         private Panel magic8ball;
+        private Task taskPanel;
     }
 }

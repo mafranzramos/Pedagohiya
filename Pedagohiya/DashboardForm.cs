@@ -12,6 +12,7 @@ using System.Media;
 using Microsoft.VisualBasic.FileIO;
 using NAudio.Wave;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.DirectoryServices.ActiveDirectory;
 namespace Pedagohiya
 {
     public partial class DashboardForm : Form
@@ -62,8 +63,10 @@ namespace Pedagohiya
             dashboard1.Dock = DockStyle.Fill;
             SettingsPanel.Dock = DockStyle.Fill;
             StudentPanel.Dock = DockStyle.Fill;
+            //ProfilePanel.Dock = DockStyle.Fill;
             AttendancePanel.Dock = DockStyle.Fill;
             DashboardPanel.Dock = DockStyle.Fill;
+            taskPanel.Dock = DockStyle.Fill;    
         }
 
         public void CloseDashboard()
@@ -76,6 +79,17 @@ namespace Pedagohiya
             Application.Exit();
         }
 
+        private void btnTask_click(object sender, EventArgs e)
+        {
+            Click();
+            dashboard1.Visible = false;
+            SettingsPanel.Visible = false;
+            StudentPanel.Visible = false;
+            //ProfilePanel.Visible = false;
+            taskPanel.Visible = true;
+        }
+
+
         private void btnSettings_Click(object sender, EventArgs e)
         {
             Click();
@@ -83,7 +97,7 @@ namespace Pedagohiya
             dashboard1.Visible = false;
             StudentPanel.Visible = false;
             //ProfilePanel.Visible = false;
-            AttendancePanel.Visible = false;
+            taskPanel.Visible = false;
         }
 
         private void btnMinimize_Click_1(object sender, EventArgs e)
@@ -98,7 +112,7 @@ namespace Pedagohiya
             SettingsPanel.Visible = false;
             StudentPanel.Visible = false;
             //ProfilePanel.Visible = false;
-            AttendancePanel.Visible = false;
+            taskPanel.Visible = false;
         }
 
         private void btnClassManagement_Click(object sender, EventArgs e)
@@ -107,8 +121,8 @@ namespace Pedagohiya
             dashboard1.Visible = false;
             SettingsPanel.Visible = false;
             StudentPanel.Visible = true;
-            AttendancePanel.Visible = false;
             //ProfilePanel.Visible = false;
+            taskPanel.Visible = false;
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
@@ -211,5 +225,6 @@ namespace Pedagohiya
             int randomIndex = random.Next(answers.Length);
             MagicLabel.Text = answers[randomIndex];
         }
+
     }
 }
